@@ -1,12 +1,8 @@
 import { useState } from "react";
-import {
-  validateName,
-  validateEmail,
-  validatePassword,
-  validateMobile,
-} from "../../utils/helper";
+import { userRegisterDataValidation } from "../../utils/helper";
 import { useLoginContext } from "../../utils/context/LoginContext";
-import { loginUserApi, registerUserApi } from "../../utils/axios";
+import { registerUserApi } from "../../utils/axios";
+import InputBox from "./InputBox";
 
 let initialState = {
   name: "",
@@ -21,7 +17,10 @@ function Register({ loginType }) {
   const [showPassword, setShowPassword] = useState(true);
   const { openLogin, closeLoginRegister } = useLoginContext();
 
-  const handleFormData = (e) => {
+  /**
+   *  function to handle input values
+   */
+  const handleInputData = (e) => {
     e.stopPropagation();
 
     setError(initialState);
@@ -30,29 +29,13 @@ function Register({ loginType }) {
     });
   };
 
+  /**
+   * function to handle submit button of form
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { name, email, password, mobile } = formData;
-    const newError = {};
 
-    if (!name) newError.name = "Enter your Name.";
-    else if (!validateName(name))
-      newError.name =
-        "Name should not be less than 4 characters, special characters and extra spaces are not allowed.";
-
-    if (!email) newError.email = "Enter your email.";
-    else if (!validateEmail(email)) newError.email = "Enter valid email.";
-
-    if (!password) newError.password = "Enter your Password.";
-    else if (!validatePassword(formData.password))
-      newError.password =
-        "Password should not be less than 8 characters with atleast 1 Uppercase , 1 Lowercase, 1 number and 1 special character.";
-
-    if (!mobile) newError.mobile = "Enter your Mobile Number.";
-    else if (!validateMobile(mobile))
-      newError.mobile =
-        "Mobile number should not be less than 10 number characters with country code(+91).";
-
+    const newError = userRegisterDataValidation(formData);
     setError(newError);
 
     if (Object.keys(newError).length === 0) {
@@ -70,45 +53,10 @@ function Register({ loginType }) {
     }
   };
 
+  /**
+   * toggle show password state
+   */
   const toggleShowPassword = () => setShowPassword((prev) => !prev);
-
-  const renderInput = (value, fieldName, name, type = "text", autoComplete = "on") => (
-    <section>
-      <label htmlFor={`${fieldName}Input`} className="flex flex-col">
-        {fieldName === "password" ? (
-          <div className="flex justify-between">
-            <h2>{name}</h2>
-            <button
-              className="self-end text-xs text-green-500 "
-              type="button"
-              onClick={toggleShowPassword}
-            >
-              {showPassword ? "show" : "hide"}
-            </button>
-          </div>
-        ) : (
-          name
-        )}
-
-        <input
-          id={`${fieldName}Input`}
-          className="border-[1px] border-black outline-none p-1"
-          type={type}
-          name={fieldName}
-          value={value}
-          onChange={handleFormData}
-
-          autoComplete={autoComplete}
-        />
-      </label>
-
-      <div
-        className={`text-red-500 text-xs mb-2`}
-      >
-        {error[fieldName]}
-      </div>
-    </section>
-  );
 
   return (
     <>
@@ -124,16 +72,41 @@ function Register({ loginType }) {
         <div className=" mt-4 text-xl text-center">Register</div>
 
         <form onSubmit={handleSubmit} className="flex flex-col mx-8">
-          {renderInput(formData.name, "name", "Name")}
-          {renderInput(formData.email, "email", "Email")}
-          {renderInput(
-            formData.password,
-            "password",
-            "Password",
-            showPassword ? "password" : "text",
-            "new-password"
-          )}
-          {renderInput(formData.mobile, "mobile", "Mobile Number")}
+          <InputBox
+            error={error}
+            handleInputData={handleInputData}
+            value={formData.name}
+            fieldName="name"
+            name="Name"
+          ></InputBox>
+
+          <InputBox
+            error={error}
+            handleInputData={handleInputData}
+            value={formData.email}
+            fieldName={"email"}
+            name={"Email"}
+          ></InputBox>
+
+          <InputBox
+            error={error}
+            handleInputData={handleInputData}
+            value={formData.password}
+            fieldName={"password"}
+            name={"Password"}
+            type={showPassword ? "password" : "text"}
+            autoComplete={"new-password"}
+            toggleShowPassword={toggleShowPassword}
+            showPassword={showPassword}
+          ></InputBox>
+
+          <InputBox
+            error={error}
+            handleInputData={handleInputData}
+            value={formData.mobile}
+            fieldName={"mobile"}
+            name={"Mobile Number"}
+          ></InputBox>
 
           <input
             className="mt-6 mb-2 bg-green-500 text-white p-1 cursor-pointer"

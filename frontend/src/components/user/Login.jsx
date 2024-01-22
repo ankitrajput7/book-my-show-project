@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { validateEmail, validatePassword } from "../../utils/helper";
+import { userLoginDataValidation } from "../../utils/helper";
 import { useLoginContext } from "../../utils/context/LoginContext";
 import { loginUserApi } from "../../utils/axios";
 import { useDispatch } from "react-redux";
 import { login, logout } from "../../utils/redux/loginSlice";
 import { useLocalStorage } from "../../utils/hooks";
+import InputBox from "./InputBox";
 
 let initialState = {
   email: "",
@@ -15,29 +16,24 @@ function Login({ loginType }) {
   const dispatch = useDispatch();
   const { closeLoginRegister, openRegister } = useLoginContext();
   const [setToLocalStorage, removeFromLocalStorage] = useLocalStorage();
-
   const [formData, setformData] = useState(initialState);
   const [error, setError] = useState(initialState);
   const [showPassword, setShowPassword] = useState(true);
 
-  const handleFormData = (e) => {
+  /**
+   *  function for handling user input
+   */
+  const handleInputData = (e) => {
     setError(initialState);
     setformData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  /**
+   * function for handling user submit form
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { email, password } = formData;
-    const newError = {};
-
-    if (!email) newError.email = "Enter your email.";
-    else if (!validateEmail(email)) newError.email = "Enter valid email.";
-
-    if (!password) newError.password = "Enter your Password.";
-    else if (!validatePassword(password))
-      newError.password =
-        "Password should not be less than 8 characters with atleast 1 Uppercase , 1 Lowercase, 1 number and 1 special character.";
-
+    const newError = userLoginDataValidation(formData);
     setError(newError);
 
     if (Object.keys(newError).length === 0) {
@@ -60,6 +56,9 @@ function Login({ loginType }) {
     }
   };
 
+  /**
+   * function to toggle status of showPassword state
+   */
   const toggleShowPassword = () => setShowPassword((prev) => !prev);
 
   return (
@@ -76,47 +75,25 @@ function Login({ loginType }) {
         <div className=" mt-4 text-xl text-center">Login</div>
 
         <form onSubmit={handleSubmit} className="flex flex-col mx-8">
-          <section>
-            <label htmlFor="emailInput" className="flex flex-col">
-              Email
-              <input
-                id="emailInput"
-                className="border-[1px] border-black outline-none p-1"
-                type="text"
-                name="email"
-                value={formData.email}
-                onChange={handleFormData}
-              />
-            </label>
-            <div className="text-red-500 text-xs mb-2">{error.email}</div>
-          </section>
+          <InputBox
+            error={error}
+            handleInputData={handleInputData}
+            value={formData.email}
+            fieldName={"email"}
+            name={"Email"}
+          ></InputBox>
 
-          <section>
-            <label htmlFor="passwordInput" className="flex flex-col">
-              <div className="flex justify-between">
-                <h2>Password</h2>
-                <button
-                  className="self-end text-xs text-green-500"
-                  type="button"
-                  onClick={toggleShowPassword}
-                >
-                  {showPassword ? "show" : "hide"}
-                </button>
-              </div>
-
-              <input
-                id="passwordInput"
-                className="border-[1px] border-black outline-none p-1"
-                type={showPassword ? "password" : "text"}
-                name="password"
-                value={formData.password}
-                onChange={handleFormData}
-                autoComplete="new-password"
-              />
-            </label>
-            <div className="text-red-500 text-xs">{error.password}</div>
-          </section>
-
+          <InputBox
+            error={error}
+            handleInputData={handleInputData}
+            value={formData.password}
+            fieldName={"password"}
+            name={"Password"}
+            type={showPassword ? "password" : "text"}
+            autoComplete={"new-password"}
+            toggleShowPassword={toggleShowPassword}
+            showPassword={showPassword}
+          ></InputBox>
           <button
             className="mt-6 mb-2 bg-green-500 text-white p-1"
             type="Submit"

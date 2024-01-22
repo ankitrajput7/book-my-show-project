@@ -1,19 +1,5 @@
 import axios from "axios";
-import { baseUrl } from "./constants";
-
-const allUrls = {
-  registerUser: `${baseUrl}user/register`,
-  loginUser: `${baseUrl}user/login`,
-  getUserData: `${baseUrl}user/data`,
-  getMovies: `${baseUrl}tmdb/get/movies`,
-  getTopratedMovies: `${baseUrl}tmdb/toprated/movies`,
-  getTvSerial: `${baseUrl}tmdb/tvserial`,
-  getLocation: `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=QAl8wE8EC2pGZ5eNW763HNdTYMLANrXT&q=`,
-  getMovieById: `${baseUrl}tmdb/get/movie`,
-  searchByText: `${baseUrl}tmdb/search`,
-  addToWatchList: `${baseUrl}user/add/watchlist`,
-  getWatchList:`${baseUrl}tmdb/watchlist`
-};
+import { allUrls } from "./constants";
 
 /**
  ** send data to register api

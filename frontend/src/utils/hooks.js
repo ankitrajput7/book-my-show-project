@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { getCityOfUserApi } from "./axios";
 
+/**
+ * custom hook to save data in local storage of browser
+ */
 export function useLocalStorage() {
   function setToLocalStorage(obj) {
     for (let i in obj) {
@@ -17,6 +20,9 @@ export function useLocalStorage() {
   return [setToLocalStorage, removeFromLocalStorage];
 }
 
+/**
+ * custom hook to get current location of the user
+ */
 export function useUserCity() {
   const [city, setCity] = useState(null);
 
