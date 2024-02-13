@@ -65,7 +65,7 @@ export const getNowPlayingMoviesApi = async (page) => {
     const { data } = await axios({
       method: "get",
       url: url,
-      params: { page: page || 14 },
+      params: { page: page || 13 },
     });
 
     return data;
@@ -192,6 +192,43 @@ export const getWatchListMoviesApi = async () => {
       headers: {
         Authorization: `bearer ${token}`,
       },
+    });
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+/**
+ * * get series details
+ */
+export const getSeriesDetailsApi = async (id) => {
+  try {
+    const { data } = await axios({
+      method: "get",
+      url: allUrls.getSeriesDetail,
+      params: { id },
+    });
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+/**
+ * remove movie from watchlist
+ */
+export const removeFromWatchlistApi = async (movieId) => {
+  try {
+    const { data } = await axios({
+      method: "delete",
+      headers: {
+        Authorization: `bearer ${localStorage.getItem("loginToken")}`,
+      },
+      url: allUrls.removeFromWatchlist,
+      params: { movieId },
     });
 
     return data;

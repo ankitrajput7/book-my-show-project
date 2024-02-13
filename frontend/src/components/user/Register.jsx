@@ -62,16 +62,17 @@ function Register({ loginType }) {
     <>
       <div className="w-full h-[100vh] fixed top-0 left-0 right-0 bottom-0 bg-black/30"></div>
 
-      <div className="flex flex-col w-96 m-auto rounded-sm mt-6 fixed top-10 left-1/3 bg-white">
+      <div className="flex flex-col w-[450px] m-auto rounded mt-6 fixed top-10 left-1/3 bg-white">
         <button
-          className="text-red-500 text-sm self-end mr-1"
+          className="text-red-500 text-md font-semibold self-end mr-1"
           onClick={closeLoginRegister}
         >
-          close
+          X
         </button>
-        <div className=" mt-4 text-xl text-center">Register</div>
+        <div className=" mb-4 text-xl font-medium text-center">Register</div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col mx-8">
+        <form onSubmit={handleSubmit} className="flex flex-col mx-10">
+          
           <InputBox
             error={error}
             handleInputData={handleInputData}
@@ -109,7 +110,7 @@ function Register({ loginType }) {
           ></InputBox>
 
           <input
-            className="mt-6 mb-2 bg-green-500 text-white p-1 cursor-pointer"
+            className="mt-6 mb-2 bg-blue-900 text-sm text-white p-2 cursor-pointer"
             type="Submit"
             value="Register"
           />

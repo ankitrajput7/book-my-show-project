@@ -1,6 +1,9 @@
 import mysql from "mysql";
 import util from "util"
 
+/**
+ * creating connection with mysql database
+ */
 const dbConnection = mysql.createConnection({
   user: "root",
   host: "localhost",
@@ -8,6 +11,9 @@ const dbConnection = mysql.createConnection({
   database: "bookmyshow",
 });
 
+/**
+ * connection with database
+ */
 dbConnection.connect((err) => {
   if (!err) {
     console.log("Connected to the MySQL DB.");

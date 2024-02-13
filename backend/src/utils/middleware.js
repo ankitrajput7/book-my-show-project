@@ -8,6 +8,7 @@ export async function verifyLoginToken(req, res, next) {
     const token = authHeader && authHeader.slice(7);
     const tokenData = jsonwebtoken.verify(token, process.env.jsonWebTokenSecretKey);
 
+    console.log(tokenData)
     req.user = tokenData;
     next();
   } catch (error) {

@@ -4,6 +4,7 @@ import { getWatchListMoviesApi } from "../../utils/axios";
 
 function WatchList() {
   const [watchList, setWatchlist] = useState([]);
+  const [removedFromWatchlist, setRemovedFromWatchlist] = useState(true);
 
   useEffect(() => {
     try {
@@ -16,15 +17,18 @@ function WatchList() {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [removedFromWatchlist]);
+
+  const handleWatchlist = () => {
+    setRemovedFromWatchlist(!removedFromWatchlist);
+  };
 
   return (
     <div>
       {watchList.length > 0 &&
         watchList.map((movie) => {
-          console.log(movie);
           return (
-            <WatchListPoster key={movie.id} movie={movie}></WatchListPoster>
+            <WatchListPoster key={movie.id} movie={movie} handleWatchlist={handleWatchlist}></WatchListPoster>
           );
         })}
     </div>

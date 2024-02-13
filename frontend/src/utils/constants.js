@@ -21,4 +21,6 @@ export const allUrls = {
   searchByText: `${baseUrl}tmdb/search`,
   addToWatchList: `${baseUrl}user/add/watchlist`,
   getWatchList: `${baseUrl}tmdb/watchlist`,
+  getSeriesDetail: `${baseUrl}tmdb/series`,
+  removeFromWatchlist:`${baseUrl}user/remove/watchlist`
 };

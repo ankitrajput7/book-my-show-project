@@ -67,12 +67,12 @@ function Login({ loginType }) {
 
       <div className=" flex flex-col self center w-60 sm:w-80 rounded-lg fixed top-20 left-[20%] sm:left-[30%] md:left-[38%]  right-0  z-10 bg-white">
         <button
-          className="self-end text-sm text-red-600 px-1 "
+          className="self-end text-md font-semibold text-red-500 px-1"
           onClick={closeLoginRegister}
         >
-          Close
+          X
         </button>
-        <div className=" mt-4 text-xl text-center">Login</div>
+        <div className=" mb-4 text-xl font-medium text-center">Login</div>
 
         <form onSubmit={handleSubmit} className="flex flex-col mx-8">
           <InputBox
@@ -95,14 +95,14 @@ function Login({ loginType }) {
             showPassword={showPassword}
           ></InputBox>
           <button
-            className="mt-6 mb-2 bg-green-500 text-white p-1"
+            className="mt-5 mb-2 bg-blue-900 text-white p-[6px] text-sm"
             type="Submit"
           >
             Login
           </button>
         </form>
 
-        <button className="text-xs text-red-500 mb-20" onClick={openRegister}>
+        <button className="text-xs text-red-500 mb-10" onClick={openRegister}>
           Not registered@ create account
         </button>
       </div>

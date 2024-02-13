@@ -15,6 +15,7 @@ import TvSerialCard from "./src/components/home/TvSerialCard";
 import MovieList from "./src/components/home/movieList/MovieList";
 import { SearchProvider } from "./src/utils/context/SearchContext";
 import WatchList from "./src/components/home/WatchList";
+import ResetPassword from "./src/components/user/ResetPassword";
 
 const AppLayout = () => {
   return (
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
         element: <WatchList />,
       },
     ],
+  },
+  {
+    path: "/password_reset",
+    element: <ResetPassword />,
   },
 ]);
 

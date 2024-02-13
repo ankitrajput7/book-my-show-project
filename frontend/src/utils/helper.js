@@ -43,7 +43,7 @@ export function userRegisterDataValidation(formData) {
     newError.name = "Enter your Name.";
   } else if (!validateName(name)) {
     newError.name =
-      "Name should not be less than 4 characters, special characters and extra spaces are not allowed.";
+      "Atleast 4 characters, no special characters and no extra spaces.";
   }
 
   if (!email) {
@@ -55,14 +55,13 @@ export function userRegisterDataValidation(formData) {
     newError.password = "Enter your Password.";
   } else if (!validatePassword(formData.password)) {
     newError.password =
-      "Password should not be less than 8 characters with atleast 1 Uppercase , 1 Lowercase, 1 number and 1 special character.";
+      "Atleast 8 characters with 1Uppercase, 1Lowercase, 1number and 1special character.";
   }
 
   if (!mobile) {
     newError.mobile = "Enter your Mobile Number.";
   } else if (!validateMobile(mobile)) {
-    newError.mobile =
-      "Mobile number should not be less than 10 number characters with country code(+91).";
+    newError.mobile = "Atleast 10 number.";
   }
 
   return newError;
@@ -85,7 +84,7 @@ export function userLoginDataValidation(formData) {
     newError.password = "Enter your Password.";
   } else if (!validatePassword(password)) {
     newError.password =
-      "Password should not be less than 8 characters with atleast 1 Uppercase , 1 Lowercase, 1 number and 1 special character.";
+      "Atleast 8 characters with 1Uppercase, 1Lowercase, 1number and 1special character.";
   }
 
   return newError;

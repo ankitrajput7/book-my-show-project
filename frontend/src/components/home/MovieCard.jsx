@@ -21,6 +21,8 @@ function MovieCard() {
       .then((result) => {
         if (result.status) {
           alert(result.message);
+        } else {
+          alert("Login first.");
         }
       })
       .catch((error) => {

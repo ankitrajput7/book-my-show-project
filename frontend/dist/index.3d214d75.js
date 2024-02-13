@@ -2973,6 +2973,8 @@ var _movieListDefault = parcelHelpers.interopDefault(_movieList);
 var _searchContext = require("./src/utils/context/SearchContext");
 var _watchList = require("./src/components/home/WatchList");
 var _watchListDefault = parcelHelpers.interopDefault(_watchList);
+var _resetPassword = require("./src/components/user/ResetPassword");
+var _resetPasswordDefault = parcelHelpers.interopDefault(_resetPassword);
 const AppLayout = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
@@ -2983,34 +2985,34 @@ const AppLayout = ()=>{
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _headerDefault.default), {}, void 0, false, {
                                 fileName: "index.js",
-                                lineNumber: 26,
+                                lineNumber: 27,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Outlet), {}, void 0, false, {
                                 fileName: "index.js",
-                                lineNumber: 27,
+                                lineNumber: 28,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footerDefault.default), {}, void 0, false, {
                                 fileName: "index.js",
-                                lineNumber: 28,
+                                lineNumber: 29,
                                 columnNumber: 13
                             }, undefined),
                             " "
                         ]
                     }, void 0, true, {
                         fileName: "index.js",
-                        lineNumber: 25,
+                        lineNumber: 26,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "index.js",
-                    lineNumber: 24,
+                    lineNumber: 25,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "index.js",
-                lineNumber: 23,
+                lineNumber: 24,
                 columnNumber: 7
             }, undefined)
         ]
@@ -3022,12 +3024,12 @@ const router = (0, _reactRouterDom.createBrowserRouter)([
         path: "/",
         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(AppLayout, {}, void 0, false, {
             fileName: "index.js",
-            lineNumber: 39,
+            lineNumber: 40,
             columnNumber: 14
         }, undefined),
         errorElement: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _errorDefault.default), {}, void 0, false, {
             fileName: "index.js",
-            lineNumber: 40,
+            lineNumber: 41,
             columnNumber: 19
         }, undefined),
         children: [
@@ -3035,7 +3037,7 @@ const router = (0, _reactRouterDom.createBrowserRouter)([
                 path: "/",
                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _homeDefault.default), {}, void 0, false, {
                     fileName: "index.js",
-                    lineNumber: 44,
+                    lineNumber: 45,
                     columnNumber: 18
                 }, undefined)
             },
@@ -3043,7 +3045,7 @@ const router = (0, _reactRouterDom.createBrowserRouter)([
                 path: "/register",
                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _registerDefault.default), {}, void 0, false, {
                     fileName: "index.js",
-                    lineNumber: 48,
+                    lineNumber: 49,
                     columnNumber: 18
                 }, undefined)
             },
@@ -3051,7 +3053,7 @@ const router = (0, _reactRouterDom.createBrowserRouter)([
                 path: "/login",
                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginDefault.default), {}, void 0, false, {
                     fileName: "index.js",
-                    lineNumber: 52,
+                    lineNumber: 53,
                     columnNumber: 18
                 }, undefined)
             },
@@ -3059,7 +3061,7 @@ const router = (0, _reactRouterDom.createBrowserRouter)([
                 path: "/movie/:type/:id",
                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCardDefault.default), {}, void 0, false, {
                     fileName: "index.js",
-                    lineNumber: 56,
+                    lineNumber: 57,
                     columnNumber: 18
                 }, undefined)
             },
@@ -3067,7 +3069,7 @@ const router = (0, _reactRouterDom.createBrowserRouter)([
                 path: "/serial/:id",
                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvSerialCardDefault.default), {}, void 0, false, {
                     fileName: "index.js",
-                    lineNumber: 60,
+                    lineNumber: 61,
                     columnNumber: 18
                 }, undefined)
             },
@@ -3075,7 +3077,7 @@ const router = (0, _reactRouterDom.createBrowserRouter)([
                 path: "/movielist",
                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieListDefault.default), {}, void 0, false, {
                     fileName: "index.js",
-                    lineNumber: 64,
+                    lineNumber: 65,
                     columnNumber: 18
                 }, undefined)
             },
@@ -3083,11 +3085,19 @@ const router = (0, _reactRouterDom.createBrowserRouter)([
                 path: "/watchlist",
                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _watchListDefault.default), {}, void 0, false, {
                     fileName: "index.js",
-                    lineNumber: 68,
+                    lineNumber: 69,
                     columnNumber: 18
                 }, undefined)
             }
         ]
+    },
+    {
+        path: "/password_reset",
+        element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _resetPasswordDefault.default), {}, void 0, false, {
+            fileName: "index.js",
+            lineNumber: 75,
+            columnNumber: 14
+        }, undefined)
     }
 ]);
 const app = (0, _clientDefault.default).createRoot(document.getElementById("root"));
@@ -3097,12 +3107,12 @@ app.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRedux.Provider), {
         router: router
     }, void 0, false, {
         fileName: "index.js",
-        lineNumber: 78,
+        lineNumber: 83,
         columnNumber: 5
     }, undefined)
 }, void 0, false, {
     fileName: "index.js",
-    lineNumber: 77,
+    lineNumber: 82,
     columnNumber: 3
 }, undefined));
 var _c;
@@ -3113,7 +3123,7 @@ $RefreshReg$(_c, "AppLayout");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","react-router-dom":"9xmpe","./src/utils/redux/store":"129uB","react-redux":"62sf7","./src/components/header/Header":"56ak6","./src/components/footer/Footer":"9tlEe","./src/components/user/Login":"hoil9","./src/components/user/Register":"7LHGe","./src/components/Error":"cKXa2","./src/components/home/Home":"lPMZj","./src/components/home/MovieCard":"fMglo","./src/utils/context/LoginContext":"l4VaY","./src/utils/context/SideBarContext":"lFABX","./src/components/home/TvSerialCard":"j9EpT","./src/components/home/movieList/MovieList":"ajmhf","./src/utils/context/SearchContext":"i1ARL","./src/components/home/WatchList":"7KRFY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","react-router-dom":"9xmpe","./src/utils/redux/store":"129uB","react-redux":"62sf7","./src/components/header/Header":"56ak6","./src/components/footer/Footer":"9tlEe","./src/components/user/Login":"hoil9","./src/components/user/Register":"7LHGe","./src/components/Error":"cKXa2","./src/components/home/Home":"lPMZj","./src/components/home/MovieCard":"fMglo","./src/utils/context/LoginContext":"l4VaY","./src/utils/context/SideBarContext":"lFABX","./src/components/home/TvSerialCard":"j9EpT","./src/components/home/movieList/MovieList":"ajmhf","./src/utils/context/SearchContext":"i1ARL","./src/components/home/WatchList":"7KRFY","./src/components/user/ResetPassword":"aNX4o","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("ee51401569654d91");
 
@@ -38861,19 +38871,23 @@ function Header() {
     }, [
         loginState
     ]);
-    // const { openSearch } = useSearchContext();
-    // const searchMovie = async (text) => {
-    //   let { data } = await searchMovieByTextApi(text);
-    //   openSearch(data.results);
-    // };
-    // const searchDebounce = (callback, timeout) => {
-    //   let timer;
-    //   return function (args) {
-    //     timer && clearTimeout(timer);
-    //     timer = setTimeout(() => callback(args), timeout);
-    //   };
-    // };
-    // const handleSearch = searchDebounce(searchMovie, 500);
+    const [searchText, setSearchText] = (0, _react.useState)("");
+    const [searchResult, setSearchResult] = (0, _react.useState)([]);
+    (0, _react.useEffect)(()=>{
+        let timer = setTimeout(()=>{
+            searchMovie(searchText);
+        }, 200);
+        return ()=>{
+            clearTimeout(timer);
+        };
+    }, [
+        searchText
+    ]);
+    const searchMovie = async (text)=>{
+        let { data } = await (0, _axios.searchMovieByTextApi)(text);
+        setSearchResult(data?.results);
+        console.log(data);
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("header", {
             className: "mt-1 relative top-0 bg-white ",
@@ -38892,46 +38906,71 @@ function Header() {
                                         alt: "logo.jpg"
                                     }, void 0, false, {
                                         fileName: "src/components/header/Header.jsx",
-                                        lineNumber: 52,
+                                        lineNumber: 53,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 51,
+                                    lineNumber: 52,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                                     className: "border-[1px] border-black/10 outline-none h-8 w-40 px-2 sm:w-64 md:w-96",
                                     type: "text",
-                                    placeholder: "search"
+                                    placeholder: "search",
+                                    value: searchText,
+                                    onChange: (e)=>{
+                                        setSearchText(e.target.value);
+                                    }
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 59,
+                                    lineNumber: 60,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/header/Header.jsx",
-                            lineNumber: 50,
+                            lineNumber: 51,
                             columnNumber: 11
+                        }, this),
+                        searchResult?.length > 0 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
+                            className: "fixed w-96 bg-white left-36 top-14 z-10 p-4",
+                            children: searchResult?.map((recomndation)=>{
+                                return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                                    className: "px-2 text-sm py-[2px]",
+                                    children: [
+                                        " ",
+                                        recomndation.name || recomndation.title
+                                    ]
+                                }, recomndation.id, true, {
+                                    fileName: "src/components/header/Header.jsx",
+                                    lineNumber: 75,
+                                    columnNumber: 19
+                                }, this);
+                            })
+                        }, void 0, false, {
+                            fileName: "src/components/header/Header.jsx",
+                            lineNumber: 72,
+                            columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                             className: "flex space-x-4 mr-2 self-center",
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "text-sm self-center",
                                     children: city
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 68,
+                                    lineNumber: 85,
                                     columnNumber: 13
                                 }, this),
                                 !loginState ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                                    className: "bg-red-500 text-xs p-1 text-white rounded-md px-4 font-medium",
+                                    className: "bg-red-500 text-sm p-1 text-white rounded-md px-4 font-medium",
                                     onClick: ()=>openLogin("user"),
                                     children: "Sign in"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 70,
+                                    lineNumber: 87,
                                     columnNumber: 15
                                 }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                     className: "flex space-x-2",
@@ -38942,7 +38981,7 @@ function Header() {
                                             alt: "user-image.png"
                                         }, void 0, false, {
                                             fileName: "src/components/header/Header.jsx",
-                                            lineNumber: 78,
+                                            lineNumber: 95,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
@@ -38951,25 +38990,25 @@ function Header() {
                                             children: !name ? "Hi, Guest" : name
                                         }, void 0, false, {
                                             fileName: "src/components/header/Header.jsx",
-                                            lineNumber: 83,
+                                            lineNumber: 100,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 77,
+                                    lineNumber: 94,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/header/Header.jsx",
-                            lineNumber: 67,
+                            lineNumber: 84,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/header/Header.jsx",
-                    lineNumber: 49,
+                    lineNumber: 50,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -38983,14 +39022,14 @@ function Header() {
                                     children: "Movies"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 96,
+                                    lineNumber: 113,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                                     children: "Stream"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 97,
+                                    lineNumber: 114,
                                     columnNumber: 13
                                 }, this),
                                 " ",
@@ -38998,7 +39037,7 @@ function Header() {
                                     children: "Eents"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 97,
+                                    lineNumber: 114,
                                     columnNumber: 29
                                 }, this),
                                 " ",
@@ -39006,7 +39045,7 @@ function Header() {
                                     children: "Plays"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 97,
+                                    lineNumber: 114,
                                     columnNumber: 44
                                 }, this),
                                 " ",
@@ -39014,20 +39053,20 @@ function Header() {
                                     children: "Sports"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 97,
+                                    lineNumber: 114,
                                     columnNumber: 59
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                                     children: "Activities"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 98,
+                                    lineNumber: 115,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/header/Header.jsx",
-                            lineNumber: 95,
+                            lineNumber: 112,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
@@ -39037,7 +39076,7 @@ function Header() {
                                     children: "ListYourShow"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 102,
+                                    lineNumber: 119,
                                     columnNumber: 13
                                 }, this),
                                 " ",
@@ -39045,7 +39084,7 @@ function Header() {
                                     children: "Corporates"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 102,
+                                    lineNumber: 119,
                                     columnNumber: 35
                                 }, this),
                                 " ",
@@ -39053,37 +39092,37 @@ function Header() {
                                     children: "Offers"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 102,
+                                    lineNumber: 119,
                                     columnNumber: 55
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                                     children: "Gift Cards"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 103,
+                                    lineNumber: 120,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/header/Header.jsx",
-                            lineNumber: 101,
+                            lineNumber: 118,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/header/Header.jsx",
-                    lineNumber: 94,
+                    lineNumber: 111,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/header/Header.jsx",
-            lineNumber: 48,
+            lineNumber: 49,
             columnNumber: 7
         }, this)
     }, void 0, false);
 }
-_s(Header, "aDSDb5tAPl+LUjClZ/pT46tgat4=", false, function() {
+_s(Header, "hR+yFK+tIjT5srzDX71JCkGYbI4=", false, function() {
     return [
         (0, _loginContext.useLoginContext),
         (0, _reactRedux.useSelector),
@@ -39158,6 +39197,8 @@ parcelHelpers.export(exports, "getMovieByIdApi", ()=>getMovieByIdApi);
 parcelHelpers.export(exports, "searchMovieByTextApi", ()=>searchMovieByTextApi);
 parcelHelpers.export(exports, "addMovieToPlayListApi", ()=>addMovieToPlayListApi);
 parcelHelpers.export(exports, "getWatchListMoviesApi", ()=>getWatchListMoviesApi);
+parcelHelpers.export(exports, "getSeriesDetailsApi", ()=>getSeriesDetailsApi);
+parcelHelpers.export(exports, "removeFromWatchlistApi", ()=>removeFromWatchlistApi);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _constants = require("./constants");
@@ -39207,7 +39248,7 @@ const getNowPlayingMoviesApi = async (page)=>{
             method: "get",
             url: url,
             params: {
-                page: page || 14
+                page: page || 13
             }
         });
         return data;
@@ -39303,6 +39344,37 @@ const getWatchListMoviesApi = async ()=>{
             url: (0, _constants.allUrls).getWatchList,
             headers: {
                 Authorization: `bearer ${token}`
+            }
+        });
+        return data;
+    } catch (error) {
+        return error;
+    }
+};
+const getSeriesDetailsApi = async (id)=>{
+    try {
+        const { data } = await (0, _axiosDefault.default)({
+            method: "get",
+            url: (0, _constants.allUrls).getSeriesDetail,
+            params: {
+                id
+            }
+        });
+        return data;
+    } catch (error) {
+        return error;
+    }
+};
+const removeFromWatchlistApi = async (movieId)=>{
+    try {
+        const { data } = await (0, _axiosDefault.default)({
+            method: "delete",
+            headers: {
+                Authorization: `bearer ${localStorage.getItem("loginToken")}`
+            },
+            url: (0, _constants.allUrls).removeFromWatchlist,
+            params: {
+                movieId
             }
         });
         return data;
@@ -43699,7 +43771,9 @@ const allUrls = {
     getMovieById: `${baseUrl}tmdb/get/movie`,
     searchByText: `${baseUrl}tmdb/search`,
     addToWatchList: `${baseUrl}user/add/watchlist`,
-    getWatchList: `${baseUrl}tmdb/watchlist`
+    getWatchList: `${baseUrl}tmdb/watchlist`,
+    getSeriesDetail: `${baseUrl}tmdb/series`,
+    removeFromWatchlist: `${baseUrl}user/remove/watchlist`
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lFABX":[function(require,module,exports) {
@@ -44297,16 +44371,16 @@ function Login({ loginType }) {
                 className: " flex flex-col self center w-60 sm:w-80 rounded-lg fixed top-20 left-[20%] sm:left-[30%] md:left-[38%]  right-0  z-10 bg-white",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                        className: "self-end text-sm text-red-600 px-1 ",
+                        className: "self-end text-md font-semibold text-red-500 px-1",
                         onClick: closeLoginRegister,
-                        children: "Close"
+                        children: "X"
                     }, void 0, false, {
                         fileName: "src/components/user/Login.jsx",
                         lineNumber: 69,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: " mt-4 text-xl text-center",
+                        className: " mb-4 text-xl font-medium text-center",
                         children: "Login"
                     }, void 0, false, {
                         fileName: "src/components/user/Login.jsx",
@@ -44344,7 +44418,7 @@ function Login({ loginType }) {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                                className: "mt-6 mb-2 bg-green-500 text-white p-1",
+                                className: "mt-5 mb-2 bg-blue-900 text-white p-[6px] text-sm",
                                 type: "Submit",
                                 children: "Login"
                             }, void 0, false, {
@@ -44359,7 +44433,7 @@ function Login({ loginType }) {
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                        className: "text-xs text-red-500 mb-20",
+                        className: "text-xs text-red-500 mb-10",
                         onClick: openRegister,
                         children: "Not registered@ create account"
                     }, void 0, false, {
@@ -44438,13 +44512,13 @@ function userRegisterDataValidation(formData) {
     let newError = {};
     const { name, email, password, mobile } = formData;
     if (!name) newError.name = "Enter your Name.";
-    else if (!validateName(name)) newError.name = "Name should not be less than 4 characters, special characters and extra spaces are not allowed.";
+    else if (!validateName(name)) newError.name = "Atleast 4 characters, no special characters and no extra spaces.";
     if (!email) newError.email = "Enter your email.";
     else if (!validateEmail(email)) newError.email = "Enter valid email.";
     if (!password) newError.password = "Enter your Password.";
-    else if (!validatePassword(formData.password)) newError.password = "Password should not be less than 8 characters with atleast 1 Uppercase , 1 Lowercase, 1 number and 1 special character.";
+    else if (!validatePassword(formData.password)) newError.password = "Atleast 8 characters with 1Uppercase, 1Lowercase, 1number and 1special character.";
     if (!mobile) newError.mobile = "Enter your Mobile Number.";
-    else if (!validateMobile(mobile)) newError.mobile = "Mobile number should not be less than 10 number characters with country code(+91).";
+    else if (!validateMobile(mobile)) newError.mobile = "Atleast 10 number.";
     return newError;
 }
 function userLoginDataValidation(formData) {
@@ -44453,7 +44527,7 @@ function userLoginDataValidation(formData) {
     if (!email) newError.email = "Enter your email.";
     else if (!validateEmail(email)) newError.email = "Enter valid email.";
     if (!password) newError.password = "Enter your Password.";
-    else if (!validatePassword(password)) newError.password = "Password should not be less than 8 characters with atleast 1 Uppercase , 1 Lowercase, 1 number and 1 special character.";
+    else if (!validatePassword(password)) newError.password = "Atleast 8 characters with 1Uppercase, 1Lowercase, 1number and 1special character.";
     return newError;
 }
 
@@ -44469,12 +44543,14 @@ try {
  */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _reactRouterDom = require("react-router-dom");
 function InputBox({ error, handleInputData, value, fieldName, name, type = "text", autoComplete = "on", toggleShowPassword, showPassword }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
+        className: "mb-2",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                 htmlFor: `${fieldName}Input`,
-                className: "flex flex-col",
+                className: "flex flex-col text-sm",
                 children: [
                     fieldName === "password" ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         className: "flex justify-between",
@@ -44483,28 +44559,28 @@ function InputBox({ error, handleInputData, value, fieldName, name, type = "text
                                 children: name
                             }, void 0, false, {
                                 fileName: "src/components/user/InputBox.jsx",
-                                lineNumber: 21,
+                                lineNumber: 23,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                                className: "self-end text-xs text-green-500 ",
+                                className: "self-end text-xs font-medium text-blue-900 ",
                                 type: "button",
                                 onClick: toggleShowPassword,
                                 children: showPassword ? "show" : "hide"
                             }, void 0, false, {
                                 fileName: "src/components/user/InputBox.jsx",
-                                lineNumber: 22,
+                                lineNumber: 24,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/user/InputBox.jsx",
-                        lineNumber: 20,
+                        lineNumber: 22,
                         columnNumber: 11
                     }, this) : name,
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                         id: `${fieldName}Input`,
-                        className: "border-[1px] border-black outline-none p-1",
+                        className: "border-[1px] border-black outline-none p-1 rounded ring-1 ring-gray-400 mt-1",
                         type: type,
                         name: fieldName,
                         value: value,
@@ -44512,27 +44588,42 @@ function InputBox({ error, handleInputData, value, fieldName, name, type = "text
                         autoComplete: autoComplete
                     }, void 0, false, {
                         fileName: "src/components/user/InputBox.jsx",
-                        lineNumber: 34,
+                        lineNumber: 36,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/user/InputBox.jsx",
-                lineNumber: 18,
+                lineNumber: 20,
                 columnNumber: 7
             }, this),
+            fieldName === "password" && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                to: "/password_reset",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                    className: "text-xs font-semibold text-[#548fba]",
+                    children: "forget password"
+                }, void 0, false, {
+                    fileName: "src/components/user/InputBox.jsx",
+                    lineNumber: 48,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "src/components/user/InputBox.jsx",
+                lineNumber: 47,
+                columnNumber: 9
+            }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: `text-red-500 text-xs mb-2`,
+                className: `text-red-500 text-xs mb-`,
                 children: error[fieldName]
             }, void 0, false, {
                 fileName: "src/components/user/InputBox.jsx",
-                lineNumber: 45,
+                lineNumber: 54,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/user/InputBox.jsx",
-        lineNumber: 17,
+        lineNumber: 19,
         columnNumber: 5
     }, this);
 }
@@ -44546,7 +44637,7 @@ $RefreshReg$(_c, "InputBox");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7LHGe":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7LHGe":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$0e5a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -44618,19 +44709,19 @@ function Register({ loginType }) {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "flex flex-col w-96 m-auto rounded-sm mt-6 fixed top-10 left-1/3 bg-white",
+                className: "flex flex-col w-[450px] m-auto rounded mt-6 fixed top-10 left-1/3 bg-white",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                        className: "text-red-500 text-sm self-end mr-1",
+                        className: "text-red-500 text-md font-semibold self-end mr-1",
                         onClick: closeLoginRegister,
-                        children: "close"
+                        children: "X"
                     }, void 0, false, {
                         fileName: "src/components/user/Register.jsx",
                         lineNumber: 66,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: " mt-4 text-xl text-center",
+                        className: " mb-4 text-xl font-medium text-center",
                         children: "Register"
                     }, void 0, false, {
                         fileName: "src/components/user/Register.jsx",
@@ -44639,7 +44730,7 @@ function Register({ loginType }) {
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
                         onSubmit: handleSubmit,
-                        className: "flex flex-col mx-8",
+                        className: "flex flex-col mx-10",
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _inputBoxDefault.default), {
                                 error: error,
@@ -44649,7 +44740,7 @@ function Register({ loginType }) {
                                 name: "Name"
                             }, void 0, false, {
                                 fileName: "src/components/user/Register.jsx",
-                                lineNumber: 75,
+                                lineNumber: 76,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _inputBoxDefault.default), {
@@ -44660,7 +44751,7 @@ function Register({ loginType }) {
                                 name: "Email"
                             }, void 0, false, {
                                 fileName: "src/components/user/Register.jsx",
-                                lineNumber: 83,
+                                lineNumber: 84,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _inputBoxDefault.default), {
@@ -44675,7 +44766,7 @@ function Register({ loginType }) {
                                 showPassword: showPassword
                             }, void 0, false, {
                                 fileName: "src/components/user/Register.jsx",
-                                lineNumber: 91,
+                                lineNumber: 92,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _inputBoxDefault.default), {
@@ -44686,16 +44777,16 @@ function Register({ loginType }) {
                                 name: "Mobile Number"
                             }, void 0, false, {
                                 fileName: "src/components/user/Register.jsx",
-                                lineNumber: 103,
+                                lineNumber: 104,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                                className: "mt-6 mb-2 bg-green-500 text-white p-1 cursor-pointer",
+                                className: "mt-6 mb-2 bg-blue-900 text-sm text-white p-2 cursor-pointer",
                                 type: "Submit",
                                 value: "Register"
                             }, void 0, false, {
                                 fileName: "src/components/user/Register.jsx",
-                                lineNumber: 111,
+                                lineNumber: 112,
                                 columnNumber: 11
                             }, this)
                         ]
@@ -44710,7 +44801,7 @@ function Register({ loginType }) {
                         children: "already registered@ login"
                     }, void 0, false, {
                         fileName: "src/components/user/Register.jsx",
-                        lineNumber: 118,
+                        lineNumber: 119,
                         columnNumber: 9
                     }, this)
                 ]
@@ -45191,6 +45282,7 @@ function MovieCard() {
     const handleAddToWatchList = ()=>{
         (0, _axios.addMovieToPlayListApi)(id).then((result)=>{
             if (result.status) alert(result.message);
+            else alert("Login first.");
         }).catch((error)=>{
             console.log(error);
         });
@@ -45206,7 +45298,7 @@ function MovieCard() {
                         alt: "imghs"
                     }, void 0, false, {
                         fileName: "src/components/home/MovieCard.jsx",
-                        lineNumber: 34,
+                        lineNumber: 36,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -45218,7 +45310,7 @@ function MovieCard() {
                                 alt: "mlp"
                             }, void 0, false, {
                                 fileName: "src/components/home/MovieCard.jsx",
-                                lineNumber: 41,
+                                lineNumber: 43,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
@@ -45229,7 +45321,7 @@ function MovieCard() {
                                         children: movie?.original_title
                                     }, void 0, false, {
                                         fileName: "src/components/home/MovieCard.jsx",
-                                        lineNumber: 48,
+                                        lineNumber: 50,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -45243,7 +45335,7 @@ function MovieCard() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "src/components/home/MovieCard.jsx",
-                                                lineNumber: 53,
+                                                lineNumber: 55,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -45251,13 +45343,13 @@ function MovieCard() {
                                                 children: movie?.release_date
                                             }, void 0, false, {
                                                 fileName: "src/components/home/MovieCard.jsx",
-                                                lineNumber: 56,
+                                                lineNumber: 58,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/home/MovieCard.jsx",
-                                        lineNumber: 52,
+                                        lineNumber: 54,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -45266,25 +45358,25 @@ function MovieCard() {
                                         children: "Add To Watch List"
                                     }, void 0, false, {
                                         fileName: "src/components/home/MovieCard.jsx",
-                                        lineNumber: 61,
+                                        lineNumber: 63,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/home/MovieCard.jsx",
-                                lineNumber: 47,
+                                lineNumber: 49,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/home/MovieCard.jsx",
-                        lineNumber: 40,
+                        lineNumber: 42,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/home/MovieCard.jsx",
-                lineNumber: 33,
+                lineNumber: 35,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
@@ -45295,7 +45387,7 @@ function MovieCard() {
                         children: "About the movie"
                     }, void 0, false, {
                         fileName: "src/components/home/MovieCard.jsx",
-                        lineNumber: 72,
+                        lineNumber: 74,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -45303,19 +45395,19 @@ function MovieCard() {
                         children: movie?.overview
                     }, void 0, false, {
                         fileName: "src/components/home/MovieCard.jsx",
-                        lineNumber: 73,
+                        lineNumber: 75,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/home/MovieCard.jsx",
-                lineNumber: 71,
+                lineNumber: 73,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/home/MovieCard.jsx",
-        lineNumber: 32,
+        lineNumber: 34,
         columnNumber: 5
     }, this);
 }
@@ -45347,22 +45439,102 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRouterDom = require("react-router-dom");
+var _axios = require("../../utils/axios");
+var _constants = require("../../utils/constants");
 var _s = $RefreshSig$();
 function TvSerialCard() {
     _s();
     const { id } = (0, _reactRouterDom.useParams)();
+    const [seriesDetail, setSeriesDetail] = (0, _react.useState)({});
+    (0, _react.useEffect)(()=>{
+        async function fetchSeriesDetails(id) {
+            let { data } = await (0, _axios.getSeriesDetailsApi)(id);
+            setSeriesDetail(data);
+            console.log(data);
+        }
+        fetchSeriesDetails(id);
+    }, []);
+    let posterImageUrl = (0, _constants.TMDB_BASE_URL) + seriesDetail.poster_path;
+    let backDropImageUrl = (0, _constants.TMDB_BASE_URL) + seriesDetail.backdrop_path;
+    const { name, overview, spoken_languages, number_of_episodes, number_of_seasons } = seriesDetail;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
-            "TvSerial ",
-            id
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                src: posterImageUrl,
+                alt: "posterg"
+            }, void 0, false, {
+                fileName: "src/components/home/TvSerialCard.jsx",
+                lineNumber: 32,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                src: backDropImageUrl,
+                alt: "posterg"
+            }, void 0, false, {
+                fileName: "src/components/home/TvSerialCard.jsx",
+                lineNumber: 33,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                children: name
+            }, void 0, false, {
+                fileName: "src/components/home/TvSerialCard.jsx",
+                lineNumber: 34,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: [
+                    overview,
+                    " "
+                ]
+            }, void 0, true, {
+                fileName: "src/components/home/TvSerialCard.jsx",
+                lineNumber: 35,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
+                children: spoken_languages?.map((lang)=>{
+                    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: lang.english_name
+                    }, lang.english_name, false, {
+                        fileName: "src/components/home/TvSerialCard.jsx",
+                        lineNumber: 38,
+                        columnNumber: 18
+                    }, this);
+                })
+            }, void 0, false, {
+                fileName: "src/components/home/TvSerialCard.jsx",
+                lineNumber: 36,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: [
+                    number_of_episodes,
+                    " "
+                ]
+            }, void 0, true, {
+                fileName: "src/components/home/TvSerialCard.jsx",
+                lineNumber: 41,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: [
+                    number_of_seasons,
+                    " "
+                ]
+            }, void 0, true, {
+                fileName: "src/components/home/TvSerialCard.jsx",
+                lineNumber: 42,
+                columnNumber: 7
+            }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/home/TvSerialCard.jsx",
-        lineNumber: 7,
-        columnNumber: 10
+        lineNumber: 31,
+        columnNumber: 5
     }, this);
 }
-_s(TvSerialCard, "yQgCIz/jJfqV1l9s2yoba81MT5A=", false, function() {
+_s(TvSerialCard, "29317b04MDF+YBAwlW2Y1H0WMfg=", false, function() {
     return [
         (0, _reactRouterDom.useParams)
     ];
@@ -45377,7 +45549,7 @@ $RefreshReg$(_c, "TvSerialCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"ajmhf":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","../../utils/axios":"lnTAL","../../utils/constants":"hB8jg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"ajmhf":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$661e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -45410,7 +45582,7 @@ function MovieList() {
     ]);
     function handleScroll() {
         let { clientHeight, scrollHeight, scrollTop } = document.documentElement;
-        if (scrollTop + clientHeight >= scrollHeight - 100) setPage((prev)=>prev + 1);
+        if (scrollTop + clientHeight >= scrollHeight - 10) setPage(page + 1);
     }
     (0, _react.useEffect)(()=>{
         window.addEventListener("scroll", handleScroll);
@@ -45690,6 +45862,7 @@ var _s = $RefreshSig$();
 function WatchList() {
     _s();
     const [watchList, setWatchlist] = (0, _react.useState)([]);
+    const [removedFromWatchlist, setRemovedFromWatchlist] = (0, _react.useState)(true);
     (0, _react.useEffect)(()=>{
         try {
             async function getWatchList() {
@@ -45700,25 +45873,30 @@ function WatchList() {
         } catch (error) {
             console.log(error);
         }
-    }, []);
+    }, [
+        removedFromWatchlist
+    ]);
+    const handleWatchlist = ()=>{
+        setRemovedFromWatchlist(!removedFromWatchlist);
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: watchList.length > 0 && watchList.map((movie)=>{
-            console.log(movie);
             return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _watchListPosterDefault.default), {
-                movie: movie
+                movie: movie,
+                handleWatchlist: handleWatchlist
             }, movie.id, false, {
                 fileName: "src/components/home/WatchList.jsx",
-                lineNumber: 27,
+                lineNumber: 31,
                 columnNumber: 13
             }, this);
         })
     }, void 0, false, {
         fileName: "src/components/home/WatchList.jsx",
-        lineNumber: 22,
+        lineNumber: 27,
         columnNumber: 5
     }, this);
 }
-_s(WatchList, "G/IkcamV3FOY3G+tovuNrPv1S68=");
+_s(WatchList, "xUoJT9g3nK7J2ATwrNYdaUmWZiM=");
 _c = WatchList;
 exports.default = WatchList;
 var _c;
@@ -45739,10 +45917,18 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _axios = require("../../utils/axios");
 var _constants = require("../../utils/constants");
-function WatchListPoster({ movie }) {
+function WatchListPoster({ movie, handleWatchlist }) {
     const { poster_path, title, release_date, original_title, original_language, adult, overview } = movie;
     const movieUrl = (0, _constants.TMDB_BASE_URL) + poster_path;
+    const handleRemoveMovie = async ()=>{
+        let responce = await (0, _axios.removeFromWatchlistApi)(movie.id);
+        if (responce?.status) {
+            alert("Movie removed from watchlist successfully.");
+            handleWatchlist();
+        }
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "flex justify-center mt-4 ",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -45754,8 +45940,8 @@ function WatchListPoster({ movie }) {
                     alt: title
                 }, void 0, false, {
                     fileName: "src/components/home/WatchListPoster.jsx",
-                    lineNumber: 18,
-                    columnNumber: 11
+                    lineNumber: 27,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "flex flex-col self-center  w-[25vw]",
@@ -45765,16 +45951,16 @@ function WatchListPoster({ movie }) {
                             children: title || original_title
                         }, void 0, false, {
                             fileName: "src/components/home/WatchListPoster.jsx",
-                            lineNumber: 25,
-                            columnNumber: 13
+                            lineNumber: 34,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                             className: "hidden text-sm font-normal mb-2 sm:flex max-h-32 overflow-hidden",
                             children: overview
                         }, void 0, false, {
                             fileName: "src/components/home/WatchListPoster.jsx",
-                            lineNumber: 28,
-                            columnNumber: 13
+                            lineNumber: 37,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                             className: "text-xs  font-bold",
@@ -45785,8 +45971,8 @@ function WatchListPoster({ movie }) {
                             ]
                         }, void 0, true, {
                             fileName: "src/components/home/WatchListPoster.jsx",
-                            lineNumber: 31,
-                            columnNumber: 13
+                            lineNumber: 40,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                             className: "text-xs font-semibold",
@@ -45797,24 +45983,33 @@ function WatchListPoster({ movie }) {
                             ]
                         }, void 0, true, {
                             fileName: "src/components/home/WatchListPoster.jsx",
-                            lineNumber: 32,
-                            columnNumber: 13
+                            lineNumber: 41,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                            className: "bg-red-500 text-white text-base mt-4 w-fit px-2 rounded",
+                            onClick: handleRemoveMovie,
+                            children: "Remove"
+                        }, void 0, false, {
+                            fileName: "src/components/home/WatchListPoster.jsx",
+                            lineNumber: 42,
+                            columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/home/WatchListPoster.jsx",
-                    lineNumber: 24,
-                    columnNumber: 11
+                    lineNumber: 33,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/home/WatchListPoster.jsx",
-            lineNumber: 17,
+            lineNumber: 26,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/components/home/WatchListPoster.jsx",
-        lineNumber: 16,
+        lineNumber: 25,
         columnNumber: 5
     }, this);
 }
@@ -45828,6 +46023,118 @@ $RefreshReg$(_c, "WatchListPoster");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","../../utils/constants":"hB8jg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["3smKr","1xC6H","bB7Pu"], "bB7Pu", "parcelRequire10c2")
+},{"react/jsx-dev-runtime":"iTorj","../../utils/constants":"hB8jg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../utils/axios":"lnTAL"}],"aNX4o":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$39c6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$39c6.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _helper = require("../../utils/helper");
+var _s = $RefreshSig$();
+function ResetPassword() {
+    _s();
+    const [email, setEmail] = (0, _react.useState)("");
+    const [error, setError] = (0, _react.useState)("");
+    const submitHandler = (e)=>{
+        e.preventDefault();
+        if (!email) setError("Enter your email.");
+        else if (!(0, _helper.validateEmail)(email)) setError("Enter valid email.");
+        if (!error) console.log(email);
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "flex justify-center",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "w-80 bg-gray-200 mt-8 p-10 rounded shadow-sm",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                    className: "font-semibold text-base",
+                    children: "Reset your password"
+                }, void 0, false, {
+                    fileName: "src/components/user/ResetPassword.jsx",
+                    lineNumber: 25,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+                    className: "flex flex-col mt-8 ",
+                    onSubmit: submitHandler,
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                            className: "mb-2 text-base",
+                            children: "Email"
+                        }, void 0, false, {
+                            fileName: "src/components/user/ResetPassword.jsx",
+                            lineNumber: 27,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                            className: "border-[1px] border-black ring-1 ring-orange-200 p-1 outline-none  rounded",
+                            type: "text",
+                            name: "email",
+                            value: email,
+                            onChange: (e)=>{
+                                setError("");
+                                setEmail(e.target.value);
+                            },
+                            autoFocus: true
+                        }, void 0, false, {
+                            fileName: "src/components/user/ResetPassword.jsx",
+                            lineNumber: 28,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                            className: "text-xs text-red-500",
+                            children: [
+                                " ",
+                                error
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/components/user/ResetPassword.jsx",
+                            lineNumber: 40,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                            className: "bg-green-500 mt-4 rounded text-sm p-1",
+                            type: "submit",
+                            children: "Send password reset email"
+                        }, void 0, false, {
+                            fileName: "src/components/user/ResetPassword.jsx",
+                            lineNumber: 42,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/user/ResetPassword.jsx",
+                    lineNumber: 26,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/user/ResetPassword.jsx",
+            lineNumber: 24,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "src/components/user/ResetPassword.jsx",
+        lineNumber: 23,
+        columnNumber: 5
+    }, this);
+}
+_s(ResetPassword, "iTn7vaFIgDjXQk8p4ewNtM5yV20=");
+_c = ResetPassword;
+exports.default = ResetPassword;
+var _c;
+$RefreshReg$(_c, "ResetPassword");
+
+  $parcel$ReactRefreshHelpers$39c6.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../utils/helper":"3GF3D","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["3smKr","1xC6H","bB7Pu"], "bB7Pu", "parcelRequire10c2")
 
 //# sourceMappingURL=index.3d214d75.js.map

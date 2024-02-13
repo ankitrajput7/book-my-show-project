@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import bookmyshow from "../../../assets/images/bookmyshow.jpg";
 import user from "../../../assets/images/User.png";
-import { getUserDataApi } from "../../utils/axios";
+import { getUserDataApi, searchMovieByTextApi } from "../../utils/axios";
 import { getUserData } from "../../utils/redux/userData";
 import { useSideBarContext } from "../../utils/context/SideBarContext";
 import { useLoginContext } from "../../utils/context/LoginContext";
@@ -25,22 +25,23 @@ function Header() {
     }
   }, [loginState]);
 
-  // const { openSearch } = useSearchContext();
+  const [searchText, setSearchText] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      searchMovie(searchText);
+    }, 200);
 
-  // const searchMovie = async (text) => {
-  //   let { data } = await searchMovieByTextApi(text);
-  //   openSearch(data.results);
-  // };
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchText]);
 
-  // const searchDebounce = (callback, timeout) => {
-  //   let timer;
-  //   return function (args) {
-  //     timer && clearTimeout(timer);
-  //     timer = setTimeout(() => callback(args), timeout);
-  //   };
-  // };
-
-  // const handleSearch = searchDebounce(searchMovie, 500);
+  const searchMovie = async (text) => {
+    let { data } = await searchMovieByTextApi(text);
+    setSearchResult(data?.results);
+    console.log(data);
+  };
 
   return (
     <>
@@ -60,15 +61,31 @@ function Header() {
               className="border-[1px] border-black/10 outline-none h-8 w-40 px-2 sm:w-64 md:w-96"
               type="text"
               placeholder="search"
-              // onKeyUp={(e) => handleSearch(e.target.value)}
+              value={searchText}
+              onChange={(e) => {
+                setSearchText(e.target.value);
+              }}
             ></input>
           </div>
 
+          {searchResult?.length > 0 && (
+            <ul className="fixed w-96 bg-white left-36 top-14 z-10 p-4">
+              {searchResult?.map((recomndation) => {
+                return (
+                  <li className="px-2 text-sm py-[2px]" key={recomndation.id}>
+                    {" "}
+                    {recomndation.name || recomndation.title}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+
           <div className="flex space-x-4 mr-2 self-center">
-            <div>{city}</div>
+            <div className="text-sm self-center">{city}</div>
             {!loginState ? (
               <button
-                className="bg-red-500 text-xs p-1 text-white rounded-md px-4 font-medium"
+                className="bg-red-500 text-sm p-1 text-white rounded-md px-4 font-medium"
                 onClick={() => openLogin("user")}
               >
                 Sign in

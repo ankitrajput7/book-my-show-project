@@ -20,8 +20,8 @@ function MovieList() {
   function handleScroll() {
     let { clientHeight, scrollHeight, scrollTop } = document.documentElement;
 
-    if (scrollTop + clientHeight >= scrollHeight - 100) {
-      setPage((prev) => prev + 1);
+    if (scrollTop + clientHeight >= scrollHeight - 10) {
+      setPage(page + 1);
     }
   }
 

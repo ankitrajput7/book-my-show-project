@@ -21,7 +21,7 @@ userRouter.post("/register", async (req, res) => {
       throw new Error("User already exist.");
     }
 
-    dbConnQuery(
+    await dbConnQuery(
       `insert into users(name, email, password, mobile) values(?,?,?,?)`,
       [name, email, password, mobile]
     );
@@ -50,9 +50,12 @@ userRouter.post("/login", async (req, res) => {
         throw new Error("Incorrect password.");
       }
 
+      let headers = { algorithm: "HS512" };
+
       let loginToken = jsonwebtoken.sign(
         { id: user.id },
-        process.env.jsonWebTokenSecretKey
+        process.env.jsonWebTokenSecretKey,
+        { ...headers, expiresIn: "1h" }
       );
 
       res.send(
@@ -105,12 +108,13 @@ userRouter.get("/data", verifyLoginToken, async (req, res) => {
 userRouter.post("/add/watchlist", verifyLoginToken, async (req, res) => {
   try {
     const movieId = req.query.movieId;
-    const data = await dbConnQuery("select * from watchlist where movieID=?", [
-      movieId,
-    ]);
+    const data = await dbConnQuery(
+      "select * from watchlist where movieID=? and userId=?",
+      [movieId, req.user.id]
+    );
 
     if (data.length > 0) {
-      throw new Error("Already in watch list.");
+      res.send(apiResponseMessage(200, "Already in watch list.", true));
     } else {
       await dbConnQuery("insert into watchlist(movieID, userID) values(?,?)", [
         movieId,
@@ -119,6 +123,23 @@ userRouter.post("/add/watchlist", verifyLoginToken, async (req, res) => {
 
       res.send(apiResponseMessage(200, "Movie added successfully.", true));
     }
+  } catch (error) {
+    res.send(apiResponseMessage(500, error.message));
+  }
+});
+
+/**
+ * remove movies from playlist
+ */
+userRouter.delete("/remove/watchlist", verifyLoginToken, async (req, res) => {
+  try {
+    const movieId = req.query.movieId;
+    await dbConnQuery("delete from watchlist where userID=? and movieID=?", [
+      req.user.id,
+      movieId,
+    ]);
+
+    res.send(apiResponseMessage(200, "Movie removed successfully.", true));
   } catch (error) {
     res.send(apiResponseMessage(500, error.message));
   }

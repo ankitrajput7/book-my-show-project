@@ -126,4 +126,24 @@ tmdbRouter.get("/watchlist", verifyLoginToken, async (req, res) => {
   }
 });
 
+/**
+ * * get details of tv series
+ */
+tmdbRouter.get("/series", async (req, res) => {
+  try {
+    let { id } = req?.query;
+    let url = `https://api.themoviedb.org/3/tv/${id}?language=en-US`;
+
+    let { data } = await axios({
+      method: "GET",
+      url,
+      ...OPTIONS,
+    });
+
+    res.send(apiResponseMessage(200, "Details fetched.", true, data));
+  } catch (error) {
+    res.send(apiResponseMessage(500, error.message));
+  }
+});
+
 export default tmdbRouter;
