@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { TMDB_BASE_URL } from "../../../utils/constants";
 
 function MovieCarosalList({ movieList, type }) {
+  console.log(movieList);
   return (
     <div className="flex overflow-x-scroll no-scrollbar">
       <div className="flex">
@@ -30,6 +31,8 @@ const CaroselMovieCard = ({ movie, type }) => {
     release_date,
     name,
     first_air_date,
+    title,
+    original_language,
   } = movie;
 
   let typeMovie = type === "now playing" ? "nowplaying" : "toprated";
@@ -42,6 +45,8 @@ const CaroselMovieCard = ({ movie, type }) => {
   };
 
   if (!poster_path) return null;
+  if (original_language !== "hi" && original_language !== "en") return null;
+
   return (
     <section
       key={id}
@@ -54,7 +59,7 @@ const CaroselMovieCard = ({ movie, type }) => {
         alt={original_title}
       ></img>
       <h4 className="font-bold  text-black/70 lg:text-base md:text-sm text-xs">
-        {!original_title ? name : original_title}
+        {!original_title ? name : title}
       </h4>
       <h4 className="text-black/60 lg:text-base md:text-sm text-xs">
         {!release_date ? first_air_date : release_date}

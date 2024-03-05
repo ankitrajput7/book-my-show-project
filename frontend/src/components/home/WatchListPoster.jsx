@@ -21,6 +21,8 @@ function WatchListPoster({ movie, handleWatchlist }) {
     }
   };
 
+  if (!title) return null;
+
   return (
     <div className="flex justify-center mt-4 ">
       <div className=" flex  space-x-4 md:space-x-8 border border-black p-4 rounded-xl">

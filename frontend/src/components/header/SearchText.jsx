@@ -20,7 +20,7 @@ function SearchText({ movieList }) {
         <ul>
           {movieList?.map((movie) => {
             return (
-              <li className="p-2 cursor-pointer" key={movie.id}>
+              <li className="p-2 hover:cursor-pointer" key={movie.id}>
                 {/* <Link */}
                 {/* to={`/movie/${movie?.adult}/${movie?.id}`}
                  > */}

@@ -59,13 +59,13 @@ export const getUserDataApi = async () => {
 /**
  * *get now playing movies
  */
-export const getNowPlayingMoviesApi = async (page) => {
+export const getNowPlayingMoviesApi = async (page = 1) => {
   try {
     let url = `${allUrls.getMovies}`;
     const { data } = await axios({
       method: "get",
       url: url,
-      params: { page: page || 13 },
+      params: { page: page },
     });
 
     return data;
@@ -77,11 +77,14 @@ export const getNowPlayingMoviesApi = async (page) => {
 /**
  * * Get top rated movies
  */
-export const getTopRatedMoviesApi = async () => {
+export const getTopRatedMoviesApi = async (page = 1) => {
   try {
+    const url =  allUrls.getTopratedMovies;
+
     const { data } = await axios({
       method: "get",
-      url: allUrls.getTopratedMovies,
+      url: url,
+      params: { page: page },
     });
 
     return data;
@@ -237,7 +240,6 @@ export const removeFromWatchlistApi = async (movieId) => {
   }
 };
 
-
 /**
  * remove movie from watchlist
  */
@@ -249,7 +251,7 @@ export const changePasswordApi = async (token, password) => {
         Authorization: `bearer ${token}`,
       },
       url: allUrls.changePassword,
-      data:{password}
+      data: { password },
     });
 
     return data;

@@ -39015,7 +39015,7 @@ function Header() {
             },
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                    className: "flex h-14 justify-between items-center",
+                    className: "relative flex h-14 justify-between items-center",
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                             className: "flex space-x-6 ml-2 items-center relative",
@@ -39056,10 +39056,10 @@ function Header() {
                             columnNumber: 11
                         }, this),
                         searchResult?.length > 0 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
-                            className: "fixed w-96 bg-white left-36 top-14 z-10 p-4",
+                            className: "absolute w-96 bg-white left-36 top-14 z-10 p-4",
                             children: searchResult?.map((recomndation)=>{
                                 return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                                    className: "px-2 text-sm py-[2px]",
+                                    className: "px-2 text-sm py-[2px] cursor-pointer hover:text-blue-900 hover:font-medium",
                                     onClick: ()=>{
                                         navigate(`/movie/movie/${recomndation.id}`);
                                         setSearchText("");
@@ -39148,42 +39148,42 @@ function Header() {
                                     lineNumber: 128,
                                     columnNumber: 13
                                 }, this),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                                    children: "Stream"
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                    to: "/watchlist",
+                                    children: "WatchList"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
                                     lineNumber: 129,
                                     columnNumber: 13
                                 }, this),
-                                " ",
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                                    children: "Eents"
+                                    children: "Events"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 129,
-                                    columnNumber: 29
+                                    lineNumber: 130,
+                                    columnNumber: 13
                                 }, this),
                                 " ",
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                                     children: "Plays"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 129,
-                                    columnNumber: 44
+                                    lineNumber: 130,
+                                    columnNumber: 29
                                 }, this),
                                 " ",
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                                     children: "Sports"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 129,
-                                    columnNumber: 59
+                                    lineNumber: 130,
+                                    columnNumber: 44
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                                     children: "Activities"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 130,
+                                    lineNumber: 131,
                                     columnNumber: 13
                                 }, this)
                             ]
@@ -39199,7 +39199,7 @@ function Header() {
                                     children: "ListYourShow"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 134,
+                                    lineNumber: 135,
                                     columnNumber: 13
                                 }, this),
                                 " ",
@@ -39207,7 +39207,7 @@ function Header() {
                                     children: "Corporates"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 134,
+                                    lineNumber: 135,
                                     columnNumber: 35
                                 }, this),
                                 " ",
@@ -39215,20 +39215,20 @@ function Header() {
                                     children: "Offers"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 134,
+                                    lineNumber: 135,
                                     columnNumber: 55
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                                     children: "Gift Cards"
                                 }, void 0, false, {
                                     fileName: "src/components/header/Header.jsx",
-                                    lineNumber: 135,
+                                    lineNumber: 136,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/header/Header.jsx",
-                            lineNumber: 133,
+                            lineNumber: 134,
                             columnNumber: 11
                         }, this)
                     ]
@@ -39366,14 +39366,14 @@ const getUserDataApi = async ()=>{
         return error;
     }
 };
-const getNowPlayingMoviesApi = async (page)=>{
+const getNowPlayingMoviesApi = async (page = 1)=>{
     try {
         let url = `${(0, _constants.allUrls).getMovies}`;
         const { data } = await (0, _axiosDefault.default)({
             method: "get",
             url: url,
             params: {
-                page: page || 13
+                page: page
             }
         });
         return data;
@@ -39381,11 +39381,15 @@ const getNowPlayingMoviesApi = async (page)=>{
         return error;
     }
 };
-const getTopRatedMoviesApi = async ()=>{
+const getTopRatedMoviesApi = async (page = 1)=>{
     try {
+        const url = (0, _constants.allUrls).getTopratedMovies;
         const { data } = await (0, _axiosDefault.default)({
             method: "get",
-            url: (0, _constants.allUrls).getTopratedMovies
+            url: url,
+            params: {
+                page: page
+            }
         });
         return data;
     } catch (error) {
@@ -45310,6 +45314,7 @@ var _reactRouterDom = require("react-router-dom");
 var _constants = require("../../../utils/constants");
 var _s = $RefreshSig$();
 function MovieCarosalList({ movieList, type }) {
+    console.log(movieList);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "flex overflow-x-scroll no-scrollbar",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -45320,18 +45325,18 @@ function MovieCarosalList({ movieList, type }) {
                     type: type
                 }, movie.id, false, {
                     fileName: "src/components/home/movieCarosal/MovieCarosalList.jsx",
-                    lineNumber: 10,
+                    lineNumber: 11,
                     columnNumber: 13
                 }, this);
             })
         }, void 0, false, {
             fileName: "src/components/home/movieCarosal/MovieCarosalList.jsx",
-            lineNumber: 7,
+            lineNumber: 8,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/components/home/movieCarosal/MovieCarosalList.jsx",
-        lineNumber: 6,
+        lineNumber: 7,
         columnNumber: 5
     }, this);
 }
@@ -45340,13 +45345,14 @@ exports.default = MovieCarosalList;
 const CaroselMovieCard = ({ movie, type })=>{
     _s();
     const navigate = (0, _reactRouterDom.useNavigate)();
-    const { poster_path, id, original_title, release_date, name, first_air_date } = movie;
+    const { poster_path, id, original_title, release_date, name, first_air_date, title, original_language } = movie;
     let typeMovie = type === "now playing" ? "nowplaying" : "toprated";
     let backpath = `${(0, _constants.TMDB_BASE_URL)}${poster_path}`;
     const handleClick = ()=>{
         type == "now playing" || type == "top rated" ? navigate(`/movie/${typeMovie}/${id}`) : navigate(`/serial/${id}`);
     };
     if (!poster_path) return null;
+    if (original_language !== "hi" && original_language !== "en") return null;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
         className: "flex flex-col cursor-pointer pr-4 sm:w-[25vw] h-60 w-[25vw] sm:h-[20rem] md:w-[18vw] md:h-[25rem]",
         onClick: handleClick,
@@ -45357,15 +45363,15 @@ const CaroselMovieCard = ({ movie, type })=>{
                 alt: original_title
             }, void 0, false, {
                 fileName: "src/components/home/movieCarosal/MovieCarosalList.jsx",
-                lineNumber: 51,
+                lineNumber: 56,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
                 className: "font-bold  text-black/70 lg:text-base md:text-sm text-xs",
-                children: !original_title ? name : original_title
+                children: !original_title ? name : title
             }, void 0, false, {
                 fileName: "src/components/home/movieCarosal/MovieCarosalList.jsx",
-                lineNumber: 56,
+                lineNumber: 61,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
@@ -45373,13 +45379,13 @@ const CaroselMovieCard = ({ movie, type })=>{
                 children: !release_date ? first_air_date : release_date
             }, void 0, false, {
                 fileName: "src/components/home/movieCarosal/MovieCarosalList.jsx",
-                lineNumber: 59,
+                lineNumber: 64,
                 columnNumber: 7
             }, undefined)
         ]
     }, id, true, {
         fileName: "src/components/home/movieCarosal/MovieCarosalList.jsx",
-        lineNumber: 46,
+        lineNumber: 51,
         columnNumber: 5
     }, undefined);
 };
@@ -45838,14 +45844,16 @@ var _react = require("react");
 var _axios = require("../../../utils/axios");
 var _movieCard = require("./MovieCard");
 var _movieCardDefault = parcelHelpers.interopDefault(_movieCard);
+var _reactInfiniteScrollComponent = require("react-infinite-scroll-component");
+var _reactInfiniteScrollComponentDefault = parcelHelpers.interopDefault(_reactInfiniteScrollComponent);
 var _s = $RefreshSig$();
 function MovieList() {
     _s();
-    const [page, setPage] = (0, _react.useState)(3);
+    const [page, setPage] = (0, _react.useState)(1);
     const [movieList, setMovieList] = (0, _react.useState)([]);
     (0, _react.useEffect)(()=>{
         async function getMovie() {
-            const data = await (0, _axios.getNowPlayingMoviesApi)(page);
+            const data = await (0, _axios.getTopRatedMoviesApi)(page);
             setMovieList((prevMovies)=>[
                     ...prevMovies,
                     ...data?.data?.results || []
@@ -45856,45 +45864,52 @@ function MovieList() {
         page
     ]);
     function handleScroll() {
-        let { clientHeight, scrollHeight, scrollTop } = document.documentElement;
-        if (scrollTop + clientHeight >= scrollHeight - 10) setPage(page + 1);
+        setPage(page + 1);
     }
-    (0, _react.useEffect)(()=>{
-        window.addEventListener("scroll", handleScroll);
-        return ()=>{
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [
-        handleScroll
-    ]);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "flex flex-col space-x-2 mt-4",
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
-                className: "self-center grid grid-cols-2 gap-4 justify-center lg:grid-cols-5 lg:gap-6 md:grid-cols-4 md:gap-6 sm:grid-cols-3 ",
-                children: movieList?.map((movie, index)=>{
-                    key = `${movie.id}${index}`;
-                    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCardDefault.default), {
-                        movie: movie
-                    }, key, false, {
-                        fileName: "src/components/home/movieList/MovieList.jsx",
-                        lineNumber: 41,
-                        columnNumber: 20
-                    }, this);
-                })
-            }, void 0, false, {
-                fileName: "src/components/home/movieList/MovieList.jsx",
-                lineNumber: 38,
-                columnNumber: 9
-            }, this)
-        }, void 0, false)
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactInfiniteScrollComponentDefault.default), {
+        dataLength: movieList?.length,
+        next: handleScroll,
+        hasMore: "true",
+        loader: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+            children: "loading..."
+        }, void 0, false, {
+            fileName: "src/components/home/movieList/MovieList.jsx",
+            lineNumber: 30,
+            columnNumber: 15
+        }, void 0),
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "flex flex-col space-x-2 mt-4",
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
+                    className: "self-center grid grid-cols-2 gap-4 justify-center lg:grid-cols-5 lg:gap-6 md:grid-cols-4 md:gap-6 sm:grid-cols-3 ",
+                    children: movieList?.map((movie, index)=>{
+                        key = `${movie.id}${index}`;
+                        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCardDefault.default), {
+                            movie: movie
+                        }, key, false, {
+                            fileName: "src/components/home/movieList/MovieList.jsx",
+                            lineNumber: 37,
+                            columnNumber: 22
+                        }, this);
+                    })
+                }, void 0, false, {
+                    fileName: "src/components/home/movieList/MovieList.jsx",
+                    lineNumber: 34,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false)
+        }, void 0, false, {
+            fileName: "src/components/home/movieList/MovieList.jsx",
+            lineNumber: 32,
+            columnNumber: 7
+        }, this)
     }, void 0, false, {
         fileName: "src/components/home/movieList/MovieList.jsx",
-        lineNumber: 36,
+        lineNumber: 26,
         columnNumber: 5
     }, this);
 }
-_s(MovieList, "QgeGCkVUd9FinZj9PMSVDhvAPsU=");
+_s(MovieList, "RaN6mAKvwXFSxUfRmQEAts3YQ74=");
 _c = MovieList;
 exports.default = MovieList;
 var _c;
@@ -45905,7 +45920,7 @@ $RefreshReg$(_c, "MovieList");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../utils/axios":"lnTAL","./MovieCard":"9iUrb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9iUrb":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../utils/axios":"lnTAL","./MovieCard":"9iUrb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-infinite-scroll-component":"uKRhT"}],"9iUrb":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$2078 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -45926,6 +45941,7 @@ const MovieCard = ({ movie })=>{
         e.stopPropagation();
         navigate(`/movie/movie/${movie.id}`);
     };
+    if (movie.original_language !== "en" && movie.original_language !== "hi" || !movie.original_title || !movie.poster_path) return null;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         onClick: handleMovie,
         className: "w-48",
@@ -45936,8 +45952,8 @@ const MovieCard = ({ movie })=>{
                 alt: movie.poster_path
             }, void 0, false, {
                 fileName: "src/components/home/movieList/MovieCard.jsx",
-                lineNumber: 15,
-                columnNumber: 9
+                lineNumber: 21,
+                columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
@@ -45946,8 +45962,8 @@ const MovieCard = ({ movie })=>{
                         children: movie.original_title
                     }, void 0, false, {
                         fileName: "src/components/home/movieList/MovieCard.jsx",
-                        lineNumber: 21,
-                        columnNumber: 11
+                        lineNumber: 27,
+                        columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: [
@@ -45956,20 +45972,20 @@ const MovieCard = ({ movie })=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/home/movieList/MovieCard.jsx",
-                        lineNumber: 22,
-                        columnNumber: 11
+                        lineNumber: 28,
+                        columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/home/movieList/MovieCard.jsx",
-                lineNumber: 20,
-                columnNumber: 9
+                lineNumber: 26,
+                columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/home/movieList/MovieCard.jsx",
-        lineNumber: 14,
-        columnNumber: 7
+        lineNumber: 20,
+        columnNumber: 5
     }, undefined);
 };
 _s(MovieCard, "CzcTeTziyjMsSrAVmHuCCb6+Bfg=", false, function() {
@@ -45987,7 +46003,361 @@ $RefreshReg$(_c, "MovieCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"9xmpe","../../../utils/constants":"hB8jg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"i1ARL":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"9xmpe","../../../utils/constants":"hB8jg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"uKRhT":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */ /* global Reflect, Promise */ var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf || ({
+        __proto__: []
+    }) instanceof Array && function(d, b) {
+        d.__proto__ = b;
+    } || function(d, b) {
+        for(var p in b)if (b.hasOwnProperty(p)) d[p] = b[p];
+    };
+    return extendStatics(d, b);
+};
+function __extends(d, b) {
+    extendStatics(d, b);
+    function __() {
+        this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for(var s, i = 1, n = arguments.length; i < n; i++){
+            s = arguments[i];
+            for(var p in s)if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+/* eslint-disable no-undefined,no-param-reassign,no-shadow */ /**
+ * Throttle execution of a function. Especially useful for rate limiting
+ * execution of handlers on events like resize and scroll.
+ *
+ * @param  {Number}    delay          A zero-or-greater delay in milliseconds. For event callbacks, values around 100 or 250 (or even higher) are most useful.
+ * @param  {Boolean}   [noTrailing]   Optional, defaults to false. If noTrailing is true, callback will only execute every `delay` milliseconds while the
+ *                                    throttled-function is being called. If noTrailing is false or unspecified, callback will be executed one final time
+ *                                    after the last throttled-function call. (After the throttled-function has not been called for `delay` milliseconds,
+ *                                    the internal counter is reset)
+ * @param  {Function}  callback       A function to be executed after delay milliseconds. The `this` context and all arguments are passed through, as-is,
+ *                                    to `callback` when the throttled-function is executed.
+ * @param  {Boolean}   [debounceMode] If `debounceMode` is true (at begin), schedule `clear` to execute after `delay` ms. If `debounceMode` is false (at end),
+ *                                    schedule `callback` to execute after `delay` ms.
+ *
+ * @return {Function}  A new, throttled, function.
+ */ function throttle(delay, noTrailing, callback, debounceMode) {
+    /*
+   * After wrapper has stopped being called, this timeout ensures that
+   * `callback` is executed at the proper times in `throttle` and `end`
+   * debounce modes.
+   */ var timeoutID;
+    var cancelled = false; // Keep track of the last time `callback` was executed.
+    var lastExec = 0; // Function to clear existing timeout
+    function clearExistingTimeout() {
+        if (timeoutID) clearTimeout(timeoutID);
+    } // Function to cancel next exec
+    function cancel() {
+        clearExistingTimeout();
+        cancelled = true;
+    } // `noTrailing` defaults to falsy.
+    if (typeof noTrailing !== "boolean") {
+        debounceMode = callback;
+        callback = noTrailing;
+        noTrailing = undefined;
+    }
+    /*
+   * The `wrapper` function encapsulates all of the throttling / debouncing
+   * functionality and when executed will limit the rate at which `callback`
+   * is executed.
+   */ function wrapper() {
+        var self = this;
+        var elapsed = Date.now() - lastExec;
+        var args = arguments;
+        if (cancelled) return;
+         // Execute `callback` and update the `lastExec` timestamp.
+        function exec() {
+            lastExec = Date.now();
+            callback.apply(self, args);
+        }
+        /*
+     * If `debounceMode` is true (at begin) this is used to clear the flag
+     * to allow future `callback` executions.
+     */ function clear() {
+            timeoutID = undefined;
+        }
+        if (debounceMode && !timeoutID) /*
+       * Since `wrapper` is being called for the first time and
+       * `debounceMode` is true (at begin), execute `callback`.
+       */ exec();
+        clearExistingTimeout();
+        if (debounceMode === undefined && elapsed > delay) /*
+       * In throttle mode, if `delay` time has been exceeded, execute
+       * `callback`.
+       */ exec();
+        else if (noTrailing !== true) /*
+       * In trailing throttle mode, since `delay` time has not been
+       * exceeded, schedule `callback` to execute `delay` ms after most
+       * recent execution.
+       *
+       * If `debounceMode` is true (at begin), schedule `clear` to execute
+       * after `delay` ms.
+       *
+       * If `debounceMode` is false (at end), schedule `callback` to
+       * execute after `delay` ms.
+       */ timeoutID = setTimeout(debounceMode ? clear : exec, debounceMode === undefined ? delay - elapsed : delay);
+    }
+    wrapper.cancel = cancel; // Return the wrapper function.
+    return wrapper;
+}
+var ThresholdUnits = {
+    Pixel: "Pixel",
+    Percent: "Percent"
+};
+var defaultThreshold = {
+    unit: ThresholdUnits.Percent,
+    value: 0.8
+};
+function parseThreshold(scrollThreshold) {
+    if (typeof scrollThreshold === "number") return {
+        unit: ThresholdUnits.Percent,
+        value: scrollThreshold * 100
+    };
+    if (typeof scrollThreshold === "string") {
+        if (scrollThreshold.match(/^(\d*(\.\d+)?)px$/)) return {
+            unit: ThresholdUnits.Pixel,
+            value: parseFloat(scrollThreshold)
+        };
+        if (scrollThreshold.match(/^(\d*(\.\d+)?)%$/)) return {
+            unit: ThresholdUnits.Percent,
+            value: parseFloat(scrollThreshold)
+        };
+        console.warn('scrollThreshold format is invalid. Valid formats: "120px", "50%"...');
+        return defaultThreshold;
+    }
+    console.warn("scrollThreshold should be string or number");
+    return defaultThreshold;
+}
+var InfiniteScroll = /** @class */ function(_super) {
+    __extends(InfiniteScroll, _super);
+    function InfiniteScroll(props) {
+        var _this = _super.call(this, props) || this;
+        _this.lastScrollTop = 0;
+        _this.actionTriggered = false;
+        // variables to keep track of pull down behaviour
+        _this.startY = 0;
+        _this.currentY = 0;
+        _this.dragging = false;
+        // will be populated in componentDidMount
+        // based on the height of the pull down element
+        _this.maxPullDownDistance = 0;
+        _this.getScrollableTarget = function() {
+            if (_this.props.scrollableTarget instanceof HTMLElement) return _this.props.scrollableTarget;
+            if (typeof _this.props.scrollableTarget === "string") return document.getElementById(_this.props.scrollableTarget);
+            if (_this.props.scrollableTarget === null) console.warn("You are trying to pass scrollableTarget but it is null. This might\n        happen because the element may not have been added to DOM yet.\n        See https://github.com/ankeetmaini/react-infinite-scroll-component/issues/59 for more info.\n      ");
+            return null;
+        };
+        _this.onStart = function(evt) {
+            if (_this.lastScrollTop) return;
+            _this.dragging = true;
+            if (evt instanceof MouseEvent) _this.startY = evt.pageY;
+            else if (evt instanceof TouchEvent) _this.startY = evt.touches[0].pageY;
+            _this.currentY = _this.startY;
+            if (_this._infScroll) {
+                _this._infScroll.style.willChange = "transform";
+                _this._infScroll.style.transition = "transform 0.2s cubic-bezier(0,0,0.31,1)";
+            }
+        };
+        _this.onMove = function(evt) {
+            if (!_this.dragging) return;
+            if (evt instanceof MouseEvent) _this.currentY = evt.pageY;
+            else if (evt instanceof TouchEvent) _this.currentY = evt.touches[0].pageY;
+            // user is scrolling down to up
+            if (_this.currentY < _this.startY) return;
+            if (_this.currentY - _this.startY >= Number(_this.props.pullDownToRefreshThreshold)) _this.setState({
+                pullToRefreshThresholdBreached: true
+            });
+            // so you can drag upto 1.5 times of the maxPullDownDistance
+            if (_this.currentY - _this.startY > _this.maxPullDownDistance * 1.5) return;
+            if (_this._infScroll) {
+                _this._infScroll.style.overflow = "visible";
+                _this._infScroll.style.transform = "translate3d(0px, " + (_this.currentY - _this.startY) + "px, 0px)";
+            }
+        };
+        _this.onEnd = function() {
+            _this.startY = 0;
+            _this.currentY = 0;
+            _this.dragging = false;
+            if (_this.state.pullToRefreshThresholdBreached) {
+                _this.props.refreshFunction && _this.props.refreshFunction();
+                _this.setState({
+                    pullToRefreshThresholdBreached: false
+                });
+            }
+            requestAnimationFrame(function() {
+                // this._infScroll
+                if (_this._infScroll) {
+                    _this._infScroll.style.overflow = "auto";
+                    _this._infScroll.style.transform = "none";
+                    _this._infScroll.style.willChange = "unset";
+                }
+            });
+        };
+        _this.onScrollListener = function(event) {
+            if (typeof _this.props.onScroll === "function") // Execute this callback in next tick so that it does not affect the
+            // functionality of the library.
+            setTimeout(function() {
+                return _this.props.onScroll && _this.props.onScroll(event);
+            }, 0);
+            var target = _this.props.height || _this._scrollableNode ? event.target : document.documentElement.scrollTop ? document.documentElement : document.body;
+            // return immediately if the action has already been triggered,
+            // prevents multiple triggers.
+            if (_this.actionTriggered) return;
+            var atBottom = _this.props.inverse ? _this.isElementAtTop(target, _this.props.scrollThreshold) : _this.isElementAtBottom(target, _this.props.scrollThreshold);
+            // call the `next` function in the props to trigger the next data fetch
+            if (atBottom && _this.props.hasMore) {
+                _this.actionTriggered = true;
+                _this.setState({
+                    showLoader: true
+                });
+                _this.props.next && _this.props.next();
+            }
+            _this.lastScrollTop = target.scrollTop;
+        };
+        _this.state = {
+            showLoader: false,
+            pullToRefreshThresholdBreached: false,
+            prevDataLength: props.dataLength
+        };
+        _this.throttledOnScrollListener = throttle(150, _this.onScrollListener).bind(_this);
+        _this.onStart = _this.onStart.bind(_this);
+        _this.onMove = _this.onMove.bind(_this);
+        _this.onEnd = _this.onEnd.bind(_this);
+        return _this;
+    }
+    InfiniteScroll.prototype.componentDidMount = function() {
+        if (typeof this.props.dataLength === "undefined") throw new Error('mandatory prop "dataLength" is missing. The prop is needed when loading more content. Check README.md for usage');
+        this._scrollableNode = this.getScrollableTarget();
+        this.el = this.props.height ? this._infScroll : this._scrollableNode || window;
+        if (this.el) this.el.addEventListener("scroll", this.throttledOnScrollListener);
+        if (typeof this.props.initialScrollY === "number" && this.el && this.el instanceof HTMLElement && this.el.scrollHeight > this.props.initialScrollY) this.el.scrollTo(0, this.props.initialScrollY);
+        if (this.props.pullDownToRefresh && this.el) {
+            this.el.addEventListener("touchstart", this.onStart);
+            this.el.addEventListener("touchmove", this.onMove);
+            this.el.addEventListener("touchend", this.onEnd);
+            this.el.addEventListener("mousedown", this.onStart);
+            this.el.addEventListener("mousemove", this.onMove);
+            this.el.addEventListener("mouseup", this.onEnd);
+            // get BCR of pullDown element to position it above
+            this.maxPullDownDistance = this._pullDown && this._pullDown.firstChild && this._pullDown.firstChild.getBoundingClientRect().height || 0;
+            this.forceUpdate();
+            if (typeof this.props.refreshFunction !== "function") throw new Error('Mandatory prop "refreshFunction" missing.\n          Pull Down To Refresh functionality will not work\n          as expected. Check README.md for usage\'');
+        }
+    };
+    InfiniteScroll.prototype.componentWillUnmount = function() {
+        if (this.el) {
+            this.el.removeEventListener("scroll", this.throttledOnScrollListener);
+            if (this.props.pullDownToRefresh) {
+                this.el.removeEventListener("touchstart", this.onStart);
+                this.el.removeEventListener("touchmove", this.onMove);
+                this.el.removeEventListener("touchend", this.onEnd);
+                this.el.removeEventListener("mousedown", this.onStart);
+                this.el.removeEventListener("mousemove", this.onMove);
+                this.el.removeEventListener("mouseup", this.onEnd);
+            }
+        }
+    };
+    InfiniteScroll.prototype.componentDidUpdate = function(prevProps) {
+        // do nothing when dataLength is unchanged
+        if (this.props.dataLength === prevProps.dataLength) return;
+        this.actionTriggered = false;
+        // update state when new data was sent in
+        this.setState({
+            showLoader: false
+        });
+    };
+    InfiniteScroll.getDerivedStateFromProps = function(nextProps, prevState) {
+        var dataLengthChanged = nextProps.dataLength !== prevState.prevDataLength;
+        // reset when data changes
+        if (dataLengthChanged) return __assign(__assign({}, prevState), {
+            prevDataLength: nextProps.dataLength
+        });
+        return null;
+    };
+    InfiniteScroll.prototype.isElementAtTop = function(target, scrollThreshold) {
+        if (scrollThreshold === void 0) scrollThreshold = 0.8;
+        var clientHeight = target === document.body || target === document.documentElement ? window.screen.availHeight : target.clientHeight;
+        var threshold = parseThreshold(scrollThreshold);
+        if (threshold.unit === ThresholdUnits.Pixel) return target.scrollTop <= threshold.value + clientHeight - target.scrollHeight + 1;
+        return target.scrollTop <= threshold.value / 100 + clientHeight - target.scrollHeight + 1;
+    };
+    InfiniteScroll.prototype.isElementAtBottom = function(target, scrollThreshold) {
+        if (scrollThreshold === void 0) scrollThreshold = 0.8;
+        var clientHeight = target === document.body || target === document.documentElement ? window.screen.availHeight : target.clientHeight;
+        var threshold = parseThreshold(scrollThreshold);
+        if (threshold.unit === ThresholdUnits.Pixel) return target.scrollTop + clientHeight >= target.scrollHeight - threshold.value;
+        return target.scrollTop + clientHeight >= threshold.value / 100 * target.scrollHeight;
+    };
+    InfiniteScroll.prototype.render = function() {
+        var _this = this;
+        var style = __assign({
+            height: this.props.height || "auto",
+            overflow: "auto",
+            WebkitOverflowScrolling: "touch"
+        }, this.props.style);
+        var hasChildren = this.props.hasChildren || !!(this.props.children && this.props.children instanceof Array && this.props.children.length);
+        // because heighted infiniteScroll visualy breaks
+        // on drag down as overflow becomes visible
+        var outerDivStyle = this.props.pullDownToRefresh && this.props.height ? {
+            overflow: "auto"
+        } : {};
+        return (0, _reactDefault.default).createElement("div", {
+            style: outerDivStyle,
+            className: "infinite-scroll-component__outerdiv"
+        }, (0, _reactDefault.default).createElement("div", {
+            className: "infinite-scroll-component " + (this.props.className || ""),
+            ref: function(infScroll) {
+                return _this._infScroll = infScroll;
+            },
+            style: style
+        }, this.props.pullDownToRefresh && (0, _reactDefault.default).createElement("div", {
+            style: {
+                position: "relative"
+            },
+            ref: function(pullDown) {
+                return _this._pullDown = pullDown;
+            }
+        }, (0, _reactDefault.default).createElement("div", {
+            style: {
+                position: "absolute",
+                left: 0,
+                right: 0,
+                top: -1 * this.maxPullDownDistance
+            }
+        }, this.state.pullToRefreshThresholdBreached ? this.props.releaseToRefreshContent : this.props.pullDownToRefreshContent)), this.props.children, !this.state.showLoader && !hasChildren && this.props.hasMore && this.props.loader, this.state.showLoader && this.props.hasMore && this.props.loader, !this.props.hasMore && this.props.endMessage));
+    };
+    return InfiniteScroll;
+}((0, _react.Component));
+exports.default = InfiniteScroll;
+
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"i1ARL":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$a81c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -46082,7 +46452,7 @@ function SearchText({ movieList }) {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
                     children: movieList?.map((movie)=>{
                         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                            className: "p-2 cursor-pointer",
+                            className: "p-2 hover:cursor-pointer",
                             children: "hello"
                         }, movie.id, false, {
                             fileName: "src/components/header/SearchText.jsx",
@@ -46204,6 +46574,7 @@ function WatchListPoster({ movie, handleWatchlist }) {
             handleWatchlist();
         }
     };
+    if (!title) return null;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "flex justify-center mt-4 ",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -46215,7 +46586,7 @@ function WatchListPoster({ movie, handleWatchlist }) {
                     alt: title
                 }, void 0, false, {
                     fileName: "src/components/home/WatchListPoster.jsx",
-                    lineNumber: 27,
+                    lineNumber: 29,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -46226,7 +46597,7 @@ function WatchListPoster({ movie, handleWatchlist }) {
                             children: title || original_title
                         }, void 0, false, {
                             fileName: "src/components/home/WatchListPoster.jsx",
-                            lineNumber: 34,
+                            lineNumber: 36,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -46234,7 +46605,7 @@ function WatchListPoster({ movie, handleWatchlist }) {
                             children: overview
                         }, void 0, false, {
                             fileName: "src/components/home/WatchListPoster.jsx",
-                            lineNumber: 37,
+                            lineNumber: 39,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -46246,7 +46617,7 @@ function WatchListPoster({ movie, handleWatchlist }) {
                             ]
                         }, void 0, true, {
                             fileName: "src/components/home/WatchListPoster.jsx",
-                            lineNumber: 40,
+                            lineNumber: 42,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -46258,7 +46629,7 @@ function WatchListPoster({ movie, handleWatchlist }) {
                             ]
                         }, void 0, true, {
                             fileName: "src/components/home/WatchListPoster.jsx",
-                            lineNumber: 41,
+                            lineNumber: 43,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -46267,24 +46638,24 @@ function WatchListPoster({ movie, handleWatchlist }) {
                             children: "Remove"
                         }, void 0, false, {
                             fileName: "src/components/home/WatchListPoster.jsx",
-                            lineNumber: 42,
+                            lineNumber: 44,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/home/WatchListPoster.jsx",
-                    lineNumber: 33,
+                    lineNumber: 35,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/home/WatchListPoster.jsx",
-            lineNumber: 26,
+            lineNumber: 28,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/components/home/WatchListPoster.jsx",
-        lineNumber: 25,
+        lineNumber: 27,
         columnNumber: 5
     }, this);
 }

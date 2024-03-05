@@ -13,7 +13,7 @@ tmdbRouter.get("/get/movies", async (req, res) => {
   try {
     let { page } = req?.query;
 
-    const url = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`;
+    const url = `https://api.themoviedb.org/3/movie/now_playing?language=hi-IN&page=${page}&region=IN`;
     let { data } = await axios({ method: "GET", url, ...OPTIONS });
 
     res.send(apiResponseMessage(200, "now playing movies fetched", true, data));
@@ -27,8 +27,9 @@ tmdbRouter.get("/get/movies", async (req, res) => {
  */
 tmdbRouter.get("/toprated/movies", async (req, res) => {
   try {
-    const url =
-      "https://api.themoviedb.org/3/movie/top_rated?language=hi-IN&page=11";
+    let { page } = req?.query;
+
+    const url = `https://api.themoviedb.org/3/movie/popular?language=hi-IN&page=${page}&region=IN`;
     let { data } = await axios({ method: "GET", url, ...OPTIONS });
 
     res.send(apiResponseMessage(200, "top rated movies fetched", true, data));
@@ -75,7 +76,8 @@ tmdbRouter.get("/search", async (req, res) => {
   try {
     let searchText = req.query.searchText;
 
-    const url = `https://api.themoviedb.org/3/search/multi?query=${searchText}`;
+    const url = `https://api.themoviedb.org/3/search/movie?query=${searchText}&include_adult=true&language=hi-IN&page=1&region=IN`
+
     let { data } = await axios({ method: "GET", url, ...OPTIONS });
 
     res.send(apiResponseMessage(200, "search results.", true, data));

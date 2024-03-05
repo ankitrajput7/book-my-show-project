@@ -494,6 +494,10 @@ img, video {
   width: 30ch;
 }
 
+.w-\[40ch\] {
+  width: 40ch;
+}
+
 .w-\[450px\] {
   width: 450px;
 }
@@ -504,14 +508,6 @@ img, video {
 
 .w-full {
   width: 100%;
-}
-
-.w-\[20ch\] {
-  width: 20ch;
-}
-
-.w-\[40ch\] {
-  width: 40ch;
 }
 
 .cursor-pointer {
@@ -938,9 +934,22 @@ img, video {
   scrollbar-width: none;
 }
 
+.hover\:cursor-pointer:hover {
+  cursor: pointer;
+}
+
 .hover\:bg-slate-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.hover\:font-medium:hover {
+  font-weight: 500;
+}
+
+.hover\:text-blue-900:hover {
+  --tw-text-opacity: 1;
+  color: rgb(30 58 138 / var(--tw-text-opacity));
 }
 
 @media (width >= 640px) {

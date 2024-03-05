@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { getNowPlayingMoviesApi } from "../../../utils/axios";
+import { getTopRatedMoviesApi } from "../../../utils/axios";
 import MovieCard from "./MovieCard";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function MovieList() {
-  const [page, setPage] = useState(3);
+  const [page, setPage] = useState(1);
   const [movieList, setMovieList] = useState([]);
 
   useEffect(() => {
     async function getMovie() {
-      const data = await getNowPlayingMoviesApi(page);
+      const data = await getTopRatedMoviesApi(page);
       setMovieList((prevMovies) => [
         ...prevMovies,
         ...(data?.data?.results || []),
@@ -18,31 +19,27 @@ function MovieList() {
   }, [page]);
 
   function handleScroll() {
-    let { clientHeight, scrollHeight, scrollTop } = document.documentElement;
-
-    if (scrollTop + clientHeight >= scrollHeight - 10) {
-      setPage(page + 1);
-    }
+    setPage(page + 1);
   }
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [handleScroll]);
-
   return (
-    <div className="flex flex-col space-x-2 mt-4">
-      <>
-        <ul className="self-center grid grid-cols-2 gap-4 justify-center lg:grid-cols-5 lg:gap-6 md:grid-cols-4 md:gap-6 sm:grid-cols-3 ">
-          {movieList?.map((movie, index) => {
-            key = `${movie.id}${index}`;
-            return <MovieCard key={key} movie={movie}></MovieCard>;
-          })}
-        </ul>
-      </>
-    </div>
+    <InfiniteScroll
+      dataLength={movieList?.length}
+      next={handleScroll}
+      hasMore={"true"}
+      loader={<h2>loading...</h2>}
+    >
+      <div className="flex flex-col space-x-2 mt-4">
+        <>
+          <ul className="self-center grid grid-cols-2 gap-4 justify-center lg:grid-cols-5 lg:gap-6 md:grid-cols-4 md:gap-6 sm:grid-cols-3 ">
+            {movieList?.map((movie, index) => {
+              key = `${movie.id}${index}`;
+              return <MovieCard key={key} movie={movie}></MovieCard>;
+            })}
+          </ul>
+        </>
+      </div>
+    </InfiniteScroll>
   );
 }
 

@@ -56,7 +56,7 @@ function Header() {
           setSearchText("");
         }}
       >
-        <div className="flex h-14 justify-between items-center">
+        <div className="relative flex h-14 justify-between items-center">
           <div className="flex space-x-6 ml-2 items-center relative">
             <Link to={"/"}>
               <img
@@ -78,11 +78,11 @@ function Header() {
           </div>
 
           {searchResult?.length > 0 && (
-            <ul className="fixed w-96 bg-white left-36 top-14 z-10 p-4">
+            <ul className="absolute w-96 bg-white left-36 top-14 z-10 p-4">
               {searchResult?.map((recomndation) => {
                 return (
                   <li
-                    className="px-2 text-sm py-[2px]"
+                    className="px-2 text-sm py-[2px] cursor-pointer hover:text-blue-900 hover:font-medium"
                     key={recomndation.id}
                     onClick={() => {
                       navigate(`/movie/movie/${recomndation.id}`);
@@ -126,7 +126,8 @@ function Header() {
         <div className="bg-gray-100 h-12 flex justify-center sm:justify-between items-center text-xs lg:text-sm md:text-sm  sm:text-xs">
           <ul className="flex my-2 space-x-2  lg:mr-16 lg:space-x-4 md:ml-10 md:space-x-4 sm:space-x-2 sm:ml-2">
             <Link to={"/movielist"}>Movies</Link>
-            <li>Stream</li> <li>Eents</li> <li>Plays</li> <li>Sports</li>
+            <Link to={"/watchlist"}>WatchList</Link>
+            <li>Events</li> <li>Plays</li> <li>Sports</li>
             <li>Activities</li>
           </ul>
 
