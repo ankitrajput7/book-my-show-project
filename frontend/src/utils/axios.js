@@ -236,3 +236,24 @@ export const removeFromWatchlistApi = async (movieId) => {
     return error;
   }
 };
+
+
+/**
+ * remove movie from watchlist
+ */
+export const changePasswordApi = async (token, password) => {
+  try {
+    const { data } = await axios({
+      method: "put",
+      headers: {
+        Authorization: `bearer ${token}`,
+      },
+      url: allUrls.changePassword,
+      data:{password}
+    });
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};

@@ -114,9 +114,9 @@ tmdbRouter.get("/watchlist", verifyLoginToken, async (req, res) => {
       let response = await fetchMovie(movie?.movieID);
       movies.push(response);
     }
-    movies.sort((a, b) => {
-      return a.title.localeCompare(b.title);
-    });
+    // movies.sort((a, b) => {
+    //   return a.title.localeCompare(b.title);
+    // });
 
     res.send(
       apiResponseMessage(200, "Watch list search results.", true, movies)

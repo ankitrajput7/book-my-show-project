@@ -6,6 +6,7 @@ import { apiResponseMessage } from "../../utils/helperFunctions.js";
 import dotenv from "dotenv";
 dotenv.config();
 const userRouter = Express.Router();
+import { sendMail } from "../../utils/middleware.js";
 
 /**
  * * register a new user
@@ -13,18 +14,19 @@ const userRouter = Express.Router();
 userRouter.post("/register", async (req, res) => {
   try {
     const { name, email, password, mobile } = req.body;
-    const [userExist] = await dbConnQuery(
-      `select * from users where email='${email}'`
-    );
+    const [user] = await dbConnQuery(`select * from users where email=?`, [
+      email,
+    ]);
 
-    if (userExist) {
+    if (user) {
       throw new Error("User already exist.");
     }
-
     await dbConnQuery(
       `insert into users(name, email, password, mobile) values(?,?,?,?)`,
       [name, email, password, mobile]
     );
+
+    sendMail(email, "Verification mail", "Verification otp is 0000");
 
     res.send(apiResponseMessage(201, "New user created successfully.", true));
   } catch (error) {
@@ -38,7 +40,6 @@ userRouter.post("/register", async (req, res) => {
 userRouter.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-
     const [user] = await dbConnQuery(
       `select * from users where email="${email}"`
     );
@@ -51,11 +52,10 @@ userRouter.post("/login", async (req, res) => {
       }
 
       let headers = { algorithm: "HS512" };
-
       let loginToken = jsonwebtoken.sign(
         { id: user.id },
         process.env.jsonWebTokenSecretKey,
-        { ...headers, expiresIn: "1h" }
+        { ...headers, expiresIn: "12h" }
       );
 
       res.send(
@@ -103,7 +103,7 @@ userRouter.get("/data", verifyLoginToken, async (req, res) => {
 });
 
 /**
- * * add movie id to playlist
+ * * add movie id to watchlist
  */
 userRouter.post("/add/watchlist", verifyLoginToken, async (req, res) => {
   try {
@@ -140,6 +140,59 @@ userRouter.delete("/remove/watchlist", verifyLoginToken, async (req, res) => {
     ]);
 
     res.send(apiResponseMessage(200, "Movie removed successfully.", true));
+  } catch (error) {
+    res.send(apiResponseMessage(500, error.message));
+  }
+});
+
+/**
+ * send password reset link on users registered mail
+ */
+userRouter.post("/send/password/reset/link", async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const [user] = await dbConnQuery("select id from users where email = ?", [
+      email,
+    ]);
+    if (!user) {
+      throw new Error("Mail is not registered.");
+    }
+
+    const passwordResetToken = jsonwebtoken.sign(
+      { id: user.id },
+      process.env.jsonWebTokenSecretKey,
+      { expiresIn: "1h" }
+    );
+
+    const url = `http://localhost:1234/change/password/${passwordResetToken}`;
+    sendMail(email, "Password reset link.", url);
+
+    res.send(
+      apiResponseMessage(
+        200,
+        "Link successfully sended on registered mailId.",
+        true
+      )
+    );
+  } catch (error) {
+    res.send(apiResponseMessage(500, error.message));
+  }
+});
+
+/**
+ * reset password of the user
+ */
+userRouter.put("/change/password", verifyLoginToken, async (req, res) => {
+  try {
+    const { password } = req.body;
+
+    await dbConnQuery("update users set password=? where id=?", [
+      password,
+      req.user.id,
+    ]);
+
+    res.send(apiResponseMessage(200, "Password updated successfully.", true));
   } catch (error) {
     res.send(apiResponseMessage(500, error.message));
   }

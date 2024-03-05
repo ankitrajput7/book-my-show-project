@@ -14,7 +14,7 @@ function MovieCard() {
       setMovie(data);
     }
     getMovie();
-  }, []);
+  }, [id]);
 
   const handleAddToWatchList = () => {
     addMovieToPlayListApi(id)
@@ -30,50 +30,74 @@ function MovieCard() {
       });
   };
 
+  console.log(movie);
+
+  const convertMinToHourmin = (min) => {
+    if (min < 60) {
+      return `0h ${min}m`;
+    } else {
+      let hour = Math.floor(min / 60);
+      let remainingMin = min % 60;
+
+      return `${hour}h ${remainingMin}m`;
+    }
+  };
+
   return (
-    <div>
-      <div className="relative border-[1px] border-black/60">
+    <div className="flex flex-col text-white">
+      <div className="relative border-[1px] border-black/60 ">
         <img
-          className="h-96 w-full opacity-.5"
+          className="h-96 w-full bg-blend-lighten"
           src={`${TMDB_BASE_URL}${movie?.backdrop_path}`}
           alt="imghs"
         ></img>
 
-        <div className="absolute top-0 flex p-8 pl-16">
-          <img
-            className="h-80 m-0 rounded-md bg-slate-800"
-            src={`${TMDB_BASE_URL}${movie?.poster_path}`}
-            alt="mlp"
-          ></img>
-
-          <section className="flex flex-col pl-6 top-0 p-4 text-white">
-            <h1 className="text-3xl font-bold mb-4 bg-black/50 text-white w-80 p-4 rounded-md">
-              {movie?.original_title}
-            </h1>
-
-            <div className="bg-black/50 text-white w-80 rounded-md p-4 mb-4">
-              <div className="text-base font-semibold">
-                ⭐ {movie?.vote_average}
-              </div>
-              <div className="text-base font-semibold mt-2">
-                {movie?.release_date}
-              </div>
-            </div>
-
-            <button
-              className="border-[1px] border-black/10 w-40 p-2 rounded-md text-white bg-red-500 font-bold"
-              onClick={handleAddToWatchList}
-            >
-              Add To Watch List
-            </button>
-          </section>
-        </div>
+        <img
+          className="absolute top-8 left-[10vw] h-80 m-0 rounded-md bg-slate-800"
+          src={`${TMDB_BASE_URL}${movie?.poster_path}`}
+          alt="mlp"
+        ></img>
       </div>
 
-      <section className="p-6">
-        <h2 className="text-lg font-bold mb-2">About the movie</h2>
-        <p className="text-base">{movie?.overview}</p>
-      </section>
+      <div className="bg-cyan-950 flex flex-col space-y-4 py-4">
+        <div className="self-center flex space-x-2">
+          <h2 className="text-xl font-semibold">{movie?.original_title}</h2>
+          <p className="text-xl opacity-50">
+            ({movie?.release_date?.split("-")[0]})
+          </p>
+        </div>
+
+        <div className="self-center text-sm flex flex-col w-full bg-cyan-950 space-y-2">
+          <div className="self-center flex">
+            <p className="">
+              ({movie?.release_date}) • {convertMinToHourmin(movie?.runtime)}
+            </p>
+          </div> 
+
+          <ul className="flex space-x-2 self-center">
+            {movie?.genres?.map((types, index) => {
+              if (index === movie?.genres?.length - 1) {
+                return <li key={types?.id}>{types?.name} </li>;
+              }
+
+              return <li key={types?.id}>{types?.name},</li>;
+            })}
+          </ul>
+        </div>
+
+        <section className="px-6 pb-4">
+          <p className="text-sm opacity-70">{movie?.tagline}</p>
+          <h2 className="text-lg font-bold mb-1">Overview</h2>
+          <p className="text-sm">{movie?.overview}</p>
+        </section>
+
+        <button
+          className="text-white border-[1px] bg-cyan-900 w-fit px-4 py-1 rounded self-center"
+          onClick={handleAddToWatchList}
+        >
+          Add to Watchlist
+        </button>
+      </div>
     </div>
   );
 }

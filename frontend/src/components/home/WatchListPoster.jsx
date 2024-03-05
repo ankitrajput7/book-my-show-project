@@ -34,7 +34,7 @@ function WatchListPoster({ movie, handleWatchlist }) {
           <h2 className="text-base font-bold md:text-xl  md:mb-4 sm:font-bold">
             {title || original_title}
           </h2>
-          <p className="hidden text-sm font-normal mb-2 sm:flex max-h-32 overflow-hidden">
+          <p className="hidden text-sm font-normal mb-2 sm:flex max-h-[8.90rem] overflow-hidden">
             {overview}
           </p>
           <p className="text-xs  font-bold"> {release_date} </p>

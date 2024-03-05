@@ -8,15 +8,7 @@ import {
 } from "../../../utils/axios";
 
 function MoviesCarosal({ type }) {
-  const [baseIndex, setBaseIndex] = useState(0);
   const [movieList, setMovieList] = useState(null);
-
-  const handlePrevious = () => {
-    baseIndex !== 0 && setBaseIndex(0);
-  };
-  const handleNext = () => {
-    baseIndex === 0 && setBaseIndex((prev) => prev + numberOfimages);
-  };
 
   useEffect(() => {
     let api;
@@ -36,28 +28,6 @@ function MoviesCarosal({ type }) {
     getMovies();
   }, []);
 
-  const [numberOfimages, setNumberOfImages] = useState(6);
-  function handleSize() {
-    let width = window.innerWidth;
-    if (width < 650) {
-      setNumberOfImages(3);
-    } else if (width < 800) {
-      setNumberOfImages(4);
-    } else if (width < 1200) {
-      setNumberOfImages(5);
-    } else if (width > 1200) {
-      setNumberOfImages(5);
-    }
-  }
-
-  useEffect(() => {
-    handleSize();
-    window.addEventListener("resize", handleSize);
-    return () => {
-      window.removeEventListener("resize", handleSize);
-    };
-  }, []);
-
   return (
     <div className="flex flex-col lg:p-8 md:p-6 sm:p-4">
       <div className="flex justify-between">
@@ -74,30 +44,10 @@ function MoviesCarosal({ type }) {
       </div>
 
       <div className="flex  py-2 relative space-x-2  lg:space-x-8 md:space-x-6 sm:space-x-4">
-        {baseIndex !== 0 && (
-          <button
-            className="absolute top-2/4 left-0 bg-black/50 px-2 text-white text-2xl rounded-md"
-            onClick={handlePrevious}
-          >
-            {"<"}
-          </button>
-        )}
-
         <MovieCarosalList
           movieList={movieList}
-          images={numberOfimages}
-          baseIndex={baseIndex}
           type={type}
         ></MovieCarosalList>
-
-        {baseIndex === 0 && (
-          <button
-            className="absolute top-2/4 right-0 bg-black/50 px-2 text-white text-2xl rounded-md"
-            onClick={handleNext}
-          >
-            {">"}
-          </button>
-        )}
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
  *  function for user name validation
  */
 export function validateName(name) {
-  const nameRegex = /^([a-zA-Z]{4,15}[0-9]{0,10})$/;
+  const nameRegex = /^([a-zA-Z]{2,15}[0-9]{0,10})$/;
   return nameRegex.test(name);
 }
 

@@ -1,43 +1,64 @@
 import { useNavigate } from "react-router-dom";
 import { TMDB_BASE_URL } from "../../../utils/constants";
 
-function MovieCarosalList({ images, movieList, baseIndex, type }) {
-  const navigate = useNavigate();
+function MovieCarosalList({ movieList, type }) {
   return (
-    <>
-      {movieList?.map((items, index) => {
-        if (index < baseIndex + images && index >= baseIndex) {
-          let typeMovie = type === "now playing" ? "nowplaying" : "toprated";
-          let backpath = `${TMDB_BASE_URL}${items.poster_path}`;
-
+    <div className="flex overflow-x-scroll no-scrollbar">
+      <div className="flex">
+        {movieList?.map((movie) => {
           return (
-            <div
-              key={items.id}
-              className="flex flex-col  cursor-pointer"
-              onClick={() =>
-                type == "now playing" || type == "top rated"
-                  ? navigate(`/movie/${typeMovie}/${items.id}`)
-                  : navigate(`/serial/${items.id}`)
-              }
-            >
-              <img
-                className="rounded-lg   sm:w-[30vw] h-60 w-[35vw]    sm:h-72   md:w-[25vw] md:h-[22rem] "
-                key={items.id}
-                src={backpath}
-                alt={items.original_title}
-              ></img>
-              <h4 className="font-bold  text-black/70 lg:text-base md:text-sm text-xs">
-                {items.original_title}
-              </h4>
-              <h4 className="text-black/60 lg:text-base md:text-sm text-xs">
-                {items.release_date}
-              </h4>
-            </div>
+            <CaroselMovieCard
+              key={movie.id}
+              movie={movie}
+              type={type}
+            ></CaroselMovieCard>
           );
-        }
-      })}
-    </>
+        })}
+      </div>
+    </div>
   );
 }
 
 export default MovieCarosalList;
+
+const CaroselMovieCard = ({ movie, type }) => {
+  const navigate = useNavigate();
+  const {
+    poster_path,
+    id,
+    original_title,
+    release_date,
+    name,
+    first_air_date,
+  } = movie;
+
+  let typeMovie = type === "now playing" ? "nowplaying" : "toprated";
+  let backpath = `${TMDB_BASE_URL}${poster_path}`;
+
+  const handleClick = () => {
+    type == "now playing" || type == "top rated"
+      ? navigate(`/movie/${typeMovie}/${id}`)
+      : navigate(`/serial/${id}`);
+  };
+
+  if (!poster_path) return null;
+  return (
+    <section
+      key={id}
+      className="flex flex-col cursor-pointer pr-4 sm:w-[25vw] h-60 w-[25vw] sm:h-[20rem] md:w-[18vw] md:h-[25rem]"
+      onClick={handleClick}
+    >
+      <img
+        className="rounded-lg sm:w-[25vw] h-52 w-[25vw] sm:h-60 md:w-[18vw] md:h-[18rem]"
+        src={backpath}
+        alt={original_title}
+      ></img>
+      <h4 className="font-bold  text-black/70 lg:text-base md:text-sm text-xs">
+        {!original_title ? name : original_title}
+      </h4>
+      <h4 className="text-black/60 lg:text-base md:text-sm text-xs">
+        {!release_date ? first_air_date : release_date}
+      </h4>
+    </section>
+  );
+};

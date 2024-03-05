@@ -16,6 +16,7 @@ import MovieList from "./src/components/home/movieList/MovieList";
 import { SearchProvider } from "./src/utils/context/SearchContext";
 import WatchList from "./src/components/home/WatchList";
 import ResetPassword from "./src/components/user/ResetPassword";
+import ChangePassword from "./src/components/user/ChangePassword";
 
 const AppLayout = () => {
   return (
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
   {
     path: "/password_reset",
     element: <ResetPassword />,
+  },
+  {
+    path: "/change/password/:token",
+    element: <ChangePassword />,
   },
 ]);
 

@@ -6,7 +6,7 @@ import { getUserDataApi, searchMovieByTextApi } from "../../utils/axios";
 import { getUserData } from "../../utils/redux/userData";
 import { useSideBarContext } from "../../utils/context/SideBarContext";
 import { useLoginContext } from "../../utils/context/LoginContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUserCity } from "../../utils/hooks";
 
 function Header() {
@@ -16,6 +16,7 @@ function Header() {
   const dispatch = useDispatch();
   const { openSideBar } = useSideBarContext();
   const city = useUserCity();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (loginState) {
@@ -43,10 +44,18 @@ function Header() {
     console.log(data);
   };
 
+  // const handleMovie = (e) => {
+  //   e.stopPropagation();
+  // };
+
   return (
     <>
-      {/* <header className="mt-1 sticky top-0 bg-white z-10"> */}
-      <header className="mt-1 relative top-0 bg-white ">
+      <header
+        className="mt-1 relative top-0 bg-white"
+        onScroll={() => {
+          setSearchText("");
+        }}
+      >
         <div className="flex h-14 justify-between items-center">
           <div className="flex space-x-6 ml-2 items-center relative">
             <Link to={"/"}>
@@ -72,8 +81,14 @@ function Header() {
             <ul className="fixed w-96 bg-white left-36 top-14 z-10 p-4">
               {searchResult?.map((recomndation) => {
                 return (
-                  <li className="px-2 text-sm py-[2px]" key={recomndation.id}>
-                    {" "}
+                  <li
+                    className="px-2 text-sm py-[2px]"
+                    key={recomndation.id}
+                    onClick={() => {
+                      navigate(`/movie/movie/${recomndation.id}`);
+                      setSearchText("");
+                    }}
+                  >
                     {recomndation.name || recomndation.title}
                   </li>
                 );

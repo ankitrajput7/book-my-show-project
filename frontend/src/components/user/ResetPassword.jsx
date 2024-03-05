@@ -21,12 +21,12 @@ function ResetPassword() {
 
   return (
     <div className="flex justify-center">
-      <div className="w-80 bg-gray-200 mt-8 p-10 rounded shadow-sm">
+      <div className="w-fit bg-gray-200 mt-8 p-10 rounded shadow-sm">
         <h1 className="font-semibold text-base">Reset your password</h1>
         <form className="flex flex-col mt-8 " onSubmit={submitHandler}>
           <label className="mb-2 text-base">Email</label>
           <input
-            className="border-[1px] border-black ring-1 ring-orange-200 p-1 outline-none  rounded"
+            className="border-[1px] border-black ring-1 ring-orange-200 p-1 outline-none w-[30ch] rounded "
             type="text"
             name="email"
             value={email}
@@ -40,7 +40,7 @@ function ResetPassword() {
           <p className="text-xs text-red-500"> {error}</p>
 
           <button
-            className="bg-green-500 mt-4 rounded text-sm p-1"
+            className="bg-green-500 mt-4 rounded text-md font-medium p-1"
             type="submit"
           >
             Send password reset email
