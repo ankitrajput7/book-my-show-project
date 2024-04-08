@@ -33,11 +33,12 @@ function Login({ loginType }) {
    */
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newError = userLoginDataValidation(formData);
-    setError(newError);
+    const validationResults = userLoginDataValidation(formData);
 
-    if (Object.keys(newError).length === 0) {
-      loginUserApi({ ...formData, loginType })
+    if (Object.keys(validationResults)[0] !== "formData") {
+      setError(validationResults);
+    } else {
+      loginUserApi({ ...validationResults.formData, loginType })
         .then((result) => {
           if (result.status) {
             setToLocalStorage({

@@ -2,7 +2,7 @@
  *  function for user name validation
  */
 export function validateName(name) {
-  const nameRegex = /^([a-zA-Z]{2,15}[0-9]{0,10})$/;
+  const nameRegex = /^([a-zA-Z][A-Za-z0-9]{0,15})$/;
   return nameRegex.test(name);
 }
 
@@ -37,13 +37,20 @@ export function validateMobile(mobile) {
  */
 export function userRegisterDataValidation(formData) {
   let newError = {};
+
+  // before validations we are removing last spaces of user data for better results
+  for (let keys in formData) {
+    if (formData[keys][formData[keys].length - 1] === " ") {
+      formData[keys] = formData[keys].trimEnd();
+    }
+  }
   const { name, email, password, mobile } = formData;
 
   if (!name) {
     newError.name = "Enter your Name.";
   } else if (!validateName(name)) {
     newError.name =
-      "Atleast 4 characters, no special characters and no extra spaces.";
+      "Atleast 4 characters first two characters are alphabet with following only alphabets and numbers.";
   }
 
   if (!email) {
@@ -55,7 +62,7 @@ export function userRegisterDataValidation(formData) {
     newError.password = "Enter your Password.";
   } else if (!validatePassword(formData.password)) {
     newError.password =
-      "Atleast 8 characters with 1Uppercase, 1Lowercase, 1number and 1special character.";
+      "Atleast 8 characters with 1Uppercase, 1Lowercase, 1number and 1special character in last space is not allowed.";
   }
 
   if (!mobile) {
@@ -64,13 +71,23 @@ export function userRegisterDataValidation(formData) {
     newError.mobile = "Atleast 10 number.";
   }
 
-  return newError;
+  if (Object.keys(newError).length > 0) {
+    return newError;
+  } else {
+    return { formData };
+  }
 }
 
 /**
  *  function  for user login data validation
  */
 export function userLoginDataValidation(formData) {
+  for (let key in formData) {
+    if (formData[key][formData[key].length - 1] === " ") {
+      formData[key] = formData[key].trimEnd();
+    }
+  }
+
   const { email, password } = formData;
   const newError = {};
 
@@ -84,8 +101,26 @@ export function userLoginDataValidation(formData) {
     newError.password = "Enter your Password.";
   } else if (!validatePassword(password)) {
     newError.password =
-      "Atleast 8 characters with 1Uppercase, 1Lowercase, 1number and 1special character.";
+      "Atleast 8 characters with 1Uppercase, 1Lowercase, 1number and 1special character in last space is not allowed.";
   }
 
-  return newError;
+  if (Object.keys(newError).length > 0) {
+    return newError;
+  } else {
+    return { formData };
+  }
 }
+
+/**
+ * function to convert minutes to hours
+ */
+export const convertMinToHourmin = (min) => {
+  if (min < 60) {
+    return `0h ${min}m`;
+  } else {
+    let hour = Math.floor(min / 60);
+    let remainingMin = min % 60;
+
+    return `${hour}h ${remainingMin}m`;
+  }
+};

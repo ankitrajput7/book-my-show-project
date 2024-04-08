@@ -38,9 +38,9 @@ function MoviesCarosal({ type }) {
             ? "Top Rated Movies"
             : "Recommended TV Serials"}
         </h2>
-        <a to={"/home/movies"} className="text-red-500 text-sm cursor-pointer">
+        {/* <a to={"/home/movies"} className="text-red-500 text-sm cursor-pointer">
           See All{">"}
-        </a>
+        </a> */}
       </div>
 
       <div className="flex  py-2 relative space-x-2  lg:space-x-8 md:space-x-6 sm:space-x-4">

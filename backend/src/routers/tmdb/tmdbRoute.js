@@ -76,7 +76,7 @@ tmdbRouter.get("/search", async (req, res) => {
   try {
     let searchText = req.query.searchText;
 
-    const url = `https://api.themoviedb.org/3/search/movie?query=${searchText}&include_adult=true&language=hi-IN&page=1&region=IN`
+    const url = `https://api.themoviedb.org/3/search/movie?query=${searchText}&include_adult=true&language=hi-IN&page=1&region=IN`;
 
     let { data } = await axios({ method: "GET", url, ...OPTIONS });
 

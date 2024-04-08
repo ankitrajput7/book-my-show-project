@@ -14,7 +14,7 @@ import { sendMail } from "../../utils/middleware.js";
 userRouter.post("/register", async (req, res) => {
   try {
     const { name, email, password, mobile } = req.body;
-    const [user] = await dbConnQuery(`select * from users where email=?`, [
+    const [user] = await dbConnQuery(`SELECT * FROM users WHERE email=?`, [
       email,
     ]);
 
@@ -22,7 +22,7 @@ userRouter.post("/register", async (req, res) => {
       throw new Error("User already exist.");
     }
     await dbConnQuery(
-      `insert into users(name, email, password, mobile) values(?,?,?,?)`,
+      `INSERT INTO users(fullName, email, password, mobile) VALUES(?,?,?,?)`,
       [name, email, password, mobile]
     );
 
@@ -41,7 +41,7 @@ userRouter.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const [user] = await dbConnQuery(
-      `select * from users where email="${email}"`
+      `SELECT * FROM users WHERE email="${email}"`
     );
 
     if (!user) {
@@ -55,7 +55,7 @@ userRouter.post("/login", async (req, res) => {
       let loginToken = jsonwebtoken.sign(
         { id: user.id },
         process.env.jsonWebTokenSecretKey,
-        { ...headers, expiresIn: "12h" }
+        { ...headers, expiresIn: "7d" }
       );
 
       res.send(
@@ -72,7 +72,7 @@ userRouter.post("/login", async (req, res) => {
  */
 userRouter.delete("/delete", verifyLoginToken, async (req, res) => {
   try {
-    await dbConnQuery(`delete from users where id='${req?.user?.id}'`);
+    await dbConnQuery(`DELETE FROM users WHERE id='${req?.user?.id}'`);
 
     res.send(
       apiResponseMessage(200, "User account deleted successfully.", true)
@@ -88,9 +88,8 @@ userRouter.delete("/delete", verifyLoginToken, async (req, res) => {
 userRouter.get("/data", verifyLoginToken, async (req, res) => {
   try {
     let { id } = req.user;
-
     let [data] = await dbConnQuery(
-      `select id, name, email from users where id = ?`,
+      `SELECT id, fullName AS name FROM users WHERE id = ?`,
       [id]
     );
 
@@ -109,14 +108,14 @@ userRouter.post("/add/watchlist", verifyLoginToken, async (req, res) => {
   try {
     const movieId = req.query.movieId;
     const data = await dbConnQuery(
-      "select * from watchlist where movieID=? and userId=?",
+      "SELECT * FROM watchlist WHERE movieID=? AND userId=?",
       [movieId, req.user.id]
     );
 
     if (data.length > 0) {
       res.send(apiResponseMessage(200, "Already in watch list.", true));
     } else {
-      await dbConnQuery("insert into watchlist(movieID, userID) values(?,?)", [
+      await dbConnQuery("INSERT INTO watchlist(movieID, userID) VALUES(?,?)", [
         movieId,
         req.user.id,
       ]);
@@ -134,7 +133,7 @@ userRouter.post("/add/watchlist", verifyLoginToken, async (req, res) => {
 userRouter.delete("/remove/watchlist", verifyLoginToken, async (req, res) => {
   try {
     const movieId = req.query.movieId;
-    await dbConnQuery("delete from watchlist where userID=? and movieID=?", [
+    await dbConnQuery("DELETE FROM watchlist WHERE userID=? and movieID=?", [
       req.user.id,
       movieId,
     ]);
@@ -148,16 +147,21 @@ userRouter.delete("/remove/watchlist", verifyLoginToken, async (req, res) => {
 /**
  * send password reset link on users registered mail
  */
-userRouter.post("/send/password/reset/link", async (req, res) => {
+userRouter.put("/send/password/reset/link", async (req, res) => {
   try {
     const { email } = req.body;
 
-    const [user] = await dbConnQuery("select id from users where email = ?", [
+    const [user] = await dbConnQuery("SELECT id FROM users WHERE email=?", [
       email,
     ]);
     if (!user) {
       throw new Error("Mail is not registered.");
     }
+
+    await dbConnQuery(
+      "UPDATE users SET requested_reset_password=? WHERE email=?",
+      [true, email]
+    );
 
     const passwordResetToken = jsonwebtoken.sign(
       { id: user.id },
@@ -187,12 +191,71 @@ userRouter.put("/change/password", verifyLoginToken, async (req, res) => {
   try {
     const { password } = req.body;
 
-    await dbConnQuery("update users set password=? where id=?", [
-      password,
+    let [data] = await dbConnQuery("SELECT * FROM users WHERE id=?", [
       req.user.id,
     ]);
 
+    if (!data.requested_reset_password) {
+      throw new Error("Reset link expired.");
+    }
+
+    await dbConnQuery(
+      "UPDATE users SET password=? , requested_reset_password=? WHERE id=?",
+      [password, false, req.user.id]
+    );
+
     res.send(apiResponseMessage(200, "Password updated successfully.", true));
+  } catch (error) {
+    res.send(apiResponseMessage(500, error.message));
+  }
+});
+
+/**
+ * rating and review any movie or serial
+ */
+userRouter.post("/ratemovie", verifyLoginToken, async (req, res) => {
+  try {
+    const { movieId, review, rating } = req.body;
+    const userId = req.user.id;
+
+    let data = await dbConnQuery(
+      "SELECT * FROM reviews WHERE movieId=? AND userId=?",
+      [movieId, userId]
+    );
+
+    if (data.length > 0) {
+      throw new Error("Already reviewed.");
+    }
+
+    await dbConnQuery(
+      "INSERT INTO reviews(movieId, rating, review, userId) VALUES(?,?,?,?)",
+      [movieId, rating, review, userId]
+    );
+
+    res.send(apiResponseMessage(201, "Review added.", true));
+  } catch (error) {
+    res.send(apiResponseMessage(500, error.message));
+  }
+});
+
+/**
+ * get reviews of movies based on movieId
+ */
+userRouter.get("/getReviews", async (req, res) => {
+  try {
+    let data = await dbConnQuery(
+      "SELECT reviewId,userId rating, reviewDate,review, fullName  FROM reviews INNER JOIN users ON reviews.userId = users.id WHERE movieId=?",
+      [req.query.movieId]
+    );
+
+    const overallRating = Math.round(
+      data?.reduce((rating, review) => {
+        return rating + review?.rating;
+      }, 0) / data?.length
+    );
+
+    data = { results: data, reviewCount: data.length ,overallRating};
+    res.send(apiResponseMessage(200, "reviews data fetched.", true, data));
   } catch (error) {
     res.send(apiResponseMessage(500, error.message));
   }

@@ -10,11 +10,13 @@ const MovieCard = ({ movie }) => {
     navigate(`/movie/movie/${movie.id}`);
   };
 
-  if (movie.original_language !== "en" && movie.original_language !== "hi" || !movie.original_title || !movie.poster_path) {
+  if (
+    (movie.original_language !== "en" && movie.original_language !== "hi") ||
+    !movie.original_title ||
+    !movie.poster_path
+  ) {
     return null;
   }
-
-
 
   return (
     <div onClick={handleMovie} className="w-48">

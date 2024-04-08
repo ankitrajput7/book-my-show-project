@@ -27,7 +27,7 @@ function MovieList() {
       dataLength={movieList?.length}
       next={handleScroll}
       hasMore={"true"}
-      loader={<h2>loading...</h2>}
+      // loader={<h2>loading...</h2>}
     >
       <div className="flex flex-col space-x-2 mt-4">
         <>

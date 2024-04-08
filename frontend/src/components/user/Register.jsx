@@ -34,22 +34,20 @@ function Register({ loginType }) {
    */
   const handleSubmit = (e) => {
     e.preventDefault();
+    const validationResults = userRegisterDataValidation(formData);
 
-    const newError = userRegisterDataValidation(formData);
-    setError(newError);
-
-    if (Object.keys(newError).length === 0) {
-      registerUserApi({ ...formData, loginType })
+    if (Object.keys(validationResults)[0] !== "formData") {
+      setError(validationResults);
+    } else {
+      registerUserApi({ ...validationResults.formData, loginType })
         .then((result) => {
-          console.log(result);
+          // console.log(result);
           alert(result.message);
           openLogin();
         })
         .catch((error) => {
           alert(error.message);
         });
-    } else {
-      console.log(newError);
     }
   };
 
@@ -72,7 +70,6 @@ function Register({ loginType }) {
         <div className=" mb-4 text-xl font-medium text-center">Register</div>
 
         <form onSubmit={handleSubmit} className="flex flex-col mx-10">
-          
           <InputBox
             error={error}
             handleInputData={handleInputData}

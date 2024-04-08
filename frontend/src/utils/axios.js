@@ -68,6 +68,7 @@ export const getNowPlayingMoviesApi = async (page = 1) => {
       params: { page: page },
     });
 
+    console.log(data);
     return data;
   } catch (error) {
     return error;
@@ -79,7 +80,7 @@ export const getNowPlayingMoviesApi = async (page = 1) => {
  */
 export const getTopRatedMoviesApi = async (page = 1) => {
   try {
-    const url =  allUrls.getTopratedMovies;
+    const url = allUrls.getTopratedMovies;
 
     const { data } = await axios({
       method: "get",
@@ -87,6 +88,7 @@ export const getTopRatedMoviesApi = async (page = 1) => {
       params: { page: page },
     });
 
+    console.log(data);
     return data;
   } catch (error) {
     return error;
@@ -241,7 +243,24 @@ export const removeFromWatchlistApi = async (movieId) => {
 };
 
 /**
- * remove movie from watchlist
+ ** send reset password to registered mail of user
+ */
+export const sendPasswordResetLinkApi = async (email) => {
+  try {
+    const { data } = await axios({
+      method: "put",
+      url: allUrls.sendPasswordResetLink,
+      data: { email },
+    });
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+/**
+ * change passwoprd of the user
  */
 export const changePasswordApi = async (token, password) => {
   try {
@@ -252,6 +271,43 @@ export const changePasswordApi = async (token, password) => {
       },
       url: allUrls.changePassword,
       data: { password },
+    });
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+/**
+ * add review of movie
+ */
+export const addReviewMovieApi = async (review) => {
+  try {
+    const { data } = await axios({
+      method: "post",
+      headers: {
+        Authorization: `bearer ${localStorage.getItem("loginToken")}`,
+      },
+      data: review,
+    });
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+/**
+ * get reviews of movie
+ */
+
+export const getReviewOfMoviewApi = async (movieId) => {
+  try {
+    const { data } = await axios({
+      method: "get",
+      url:allUrls.getReviewOfMoview,
+      params: { movieId },
     });
 
     return data;

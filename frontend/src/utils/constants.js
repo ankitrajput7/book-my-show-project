@@ -23,5 +23,8 @@ export const allUrls = {
   getWatchList: `${baseUrl}tmdb/watchlist`,
   getSeriesDetail: `${baseUrl}tmdb/series`,
   removeFromWatchlist:`${baseUrl}user/remove/watchlist`,
-  changePassword:`${baseUrl}user/change/password`
+  sendPasswordResetLink:`${baseUrl}user/send/password/reset/link`,
+  changePassword:`${baseUrl}user/change/password`,
+  addReviewOfMoview:`${baseUrl}user/ratemovie`,
+  getReviewOfMoview:`${baseUrl}user/getReviews`
 };

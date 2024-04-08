@@ -1,6 +1,6 @@
 import { useLocalStorage } from "../../utils/hooks";
 import { logout } from "../../utils/redux/loginSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector} from "react-redux";
 import { useSideBarContext } from "../../utils/context/SideBarContext";
 import user from "../../../assets/images/User.png";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ function ProfileSideBar() {
   const dispatch = useDispatch();
   const [setToLocalStorage, removeFromLocalStorage] = useLocalStorage();
   const navigate = useNavigate();
+  const name = useSelector((state) => state.userData?.name);
 
   function handleLogOut() {
     dispatch(logout());
@@ -27,7 +28,7 @@ function ProfileSideBar() {
 
       <div className="w-80 fixed z-20 top-0 right-0 bg-white p-4">
         <div className="flex justify-between border-b-[1px] border-black/20 pb-4">
-          <h1 className="font-semibold">Hey! Ankit</h1>
+          <h1 className="font-semibold">Hey! {name?.length>0?name:"User"}</h1>
           <img className="w-8" src={user} alt="default user img"></img>
         </div>
 

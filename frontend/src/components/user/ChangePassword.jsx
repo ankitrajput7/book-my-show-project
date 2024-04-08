@@ -25,7 +25,7 @@ function ChangePassword() {
       } else {
         changePasswordApi(token, password)
           .then((responce) => {
-            console.log(responce);
+           alert(responce.message)
           })
           .catch((error) => {
             console.log(error);

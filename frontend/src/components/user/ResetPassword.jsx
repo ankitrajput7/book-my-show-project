@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { validateEmail } from "../../utils/helper";
+import { sendPasswordResetLinkApi } from "../../utils/axios";
 
 function ResetPassword() {
   const [email, setEmail] = useState("");
@@ -15,7 +16,13 @@ function ResetPassword() {
     }
 
     if (!error) {
-      console.log(email);
+      sendPasswordResetLinkApi(email)
+        .then((result) => {
+          alert(result.message);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
